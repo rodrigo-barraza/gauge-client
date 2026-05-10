@@ -1,0 +1,8 @@
+const CONFIG = {
+  GAUGE_SERVICE_URL: (process.env.NEXT_PUBLIC_GAUGE_SERVICE_URL || process.env.GAUGE_SERVICE_URL) || "http://localhost:5607",
+  GAUGE_SERVICE_PUBLIC_URL: (process.env.NEXT_PUBLIC_GAUGE_SERVICE_PUBLIC_URL || process.env.GAUGE_SERVICE_PUBLIC_URL) || "",
+  GAUGE_CLIENT_DOMAIN: (process.env.NEXT_PUBLIC_GAUGE_CLIENT_DOMAIN || process.env.GAUGE_CLIENT_DOMAIN) || "",
+  TOOLS_SERVICE_URL: process.env.TOOLS_SERVICE_URL || "http://192.168.86.2:5590",
+};
+
+export default CONFIG;

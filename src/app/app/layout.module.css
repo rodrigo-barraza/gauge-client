@@ -1,0 +1,18 @@
+.appShell {
+  display: flex;
+  min-height: 100dvh;
+}
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-xl);
+  overflow-y: auto;
+  animation: fadeIn var(--transition-base) ease-out;
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: var(--space-md);
+  }
+}
