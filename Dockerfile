@@ -42,8 +42,9 @@ ENV HOSTNAME=0.0.0.0
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy public assets
-COPY --from=builder /app/public ./public
+# Copy public assets (may not exist if project has no static files)
+RUN --mount=from=builder,source=/app/public,target=/tmp/public,required=false \
+  if [ -d /tmp/public ]; then cp -r /tmp/public ./public; fi
 
 # Copy standalone server and static assets
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
