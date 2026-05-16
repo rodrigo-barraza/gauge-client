@@ -19,8 +19,8 @@ export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER } = {}) {
       setWeather(weatherData);
       setEnvironment(envData);
       setError(null);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -40,9 +40,9 @@ export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER } = {}) {
           setError(null);
           setLoading(false);
         }
-      } catch (err) {
+      } catch (error) {
         if (!cancelled) {
-          setError(err.message);
+          setError(error.message);
           setLoading(false);
         }
       }

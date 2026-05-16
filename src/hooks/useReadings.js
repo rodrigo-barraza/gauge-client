@@ -23,8 +23,8 @@ export function useReadings(sensorId, { pollInterval = POLL_INTERVAL_READINGS, h
       setStats(statsData);
       setSparkline(sparklineData.data || []);
       setError(null);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -47,9 +47,9 @@ export function useReadings(sensorId, { pollInterval = POLL_INTERVAL_READINGS, h
           setError(null);
           setLoading(false);
         }
-      } catch (err) {
+      } catch (error) {
         if (!cancelled) {
-          setError(err.message);
+          setError(error.message);
           setLoading(false);
         }
       }

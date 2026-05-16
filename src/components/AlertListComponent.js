@@ -29,7 +29,7 @@ export default function AlertListComponent() {
       });
       setFormData({ name: "", sensorId: "", condition: "above", threshold: "", severity: "warning", message: "" });
       setShowForm(false);
-    } catch (err) {
+    } catch (error) {
       console.error("Create alert failed:", err);
     }
   }

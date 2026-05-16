@@ -15,7 +15,7 @@ export default function DashboardComponent() {
       try {
         const summary = await getDashboardSummary();
         setData(summary);
-      } catch (err) {
+      } catch (error) {
         console.error("Dashboard fetch failed:", err);
       } finally {
         setLoading(false);

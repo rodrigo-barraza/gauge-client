@@ -33,7 +33,7 @@ export default function SensorListComponent() {
       });
       setFormData({ name: "", type: "temperature", location: "", description: "" });
       setShowForm(false);
-    } catch (err) {
+    } catch (error) {
       console.error("Create sensor failed:", err);
     }
   }

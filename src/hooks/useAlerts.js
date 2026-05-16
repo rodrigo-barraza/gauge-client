@@ -19,8 +19,8 @@ export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
       setAlerts(alertsData.alerts || []);
       setHistory(historyData.history || []);
       setError(null);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -40,9 +40,9 @@ export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
           setError(null);
           setLoading(false);
         }
-      } catch (err) {
+      } catch (error) {
         if (!cancelled) {
-          setError(err.message);
+          setError(error.message);
           setLoading(false);
         }
       }

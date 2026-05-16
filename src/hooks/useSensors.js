@@ -14,8 +14,8 @@ export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
       const data = await listSensors();
       setSensors(data.sensors || []);
       setError(null);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -31,9 +31,9 @@ export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
           setError(null);
           setLoading(false);
         }
-      } catch (err) {
+      } catch (error) {
         if (!cancelled) {
-          setError(err.message);
+          setError(error.message);
           setLoading(false);
         }
       }
