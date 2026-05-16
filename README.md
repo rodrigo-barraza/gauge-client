@@ -5,7 +5,7 @@ Weather and sensor monitoring dashboard — sensor management, live readings, we
 ## Quick Start
 
 ```bash
-cp .env.example .env
+# Secrets are resolved from vault-service automatically.
 npm install
 npm run dev
 ```
