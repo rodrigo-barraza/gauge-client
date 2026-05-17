@@ -7,12 +7,12 @@ const API_BASE = "/api/gauge";
 
 async function request(path, options = {}) {
   const url = `${API_BASE}${path}`;
-  const res = await fetch(url, {
+  const response = await fetch(url, {
     headers: { "Content-Type": "application/json" },
     ...options,
   });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || `Request failed: ${res.status}`);
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || `Request failed: ${response.status}`);
   return data;
 }
 
