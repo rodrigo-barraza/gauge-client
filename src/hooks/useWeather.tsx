@@ -4,9 +4,9 @@ import { useState, useEffect, useCallback } from "react";
 import { getEnvironmentDashboard, getCurrentWeather } from "@/services/GaugeService";
 import { POLL_INTERVAL_WEATHER } from "@/constants";
 
-export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER } = {}) {
-  const [weather, setWeather] = useState(null);
-  const [environment, setEnvironment] = useState(null);
+export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER }: any = {}) {
+  const [weather, setWeather] = useState<any>(null);
+  const [environment, setEnvironment] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,7 +19,7 @@ export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER } = {}) {
       setWeather(weatherData);
       setEnvironment(envData);
       setError(null);
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
       setLoading(false);
@@ -40,7 +40,7 @@ export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER } = {}) {
           setError(null);
           setLoading(false);
         }
-      } catch (error) {
+      } catch (error: any) {
         if (!cancelled) {
           setError(error.message);
           setLoading(false);

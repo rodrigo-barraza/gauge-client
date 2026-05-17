@@ -7,7 +7,7 @@ import { SENSOR_TYPE_LABELS, POLL_INTERVAL_DASHBOARD } from "@/constants";
 import styles from "./DashboardComponent.module.css";
 
 export default function DashboardComponent() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function DashboardComponent() {
       try {
         const summary = await getDashboardSummary();
         setData(summary);
-      } catch (error) {
+      } catch (err: any) {
         console.error("Dashboard fetch failed:", err);
       } finally {
         setLoading(false);
@@ -101,10 +101,10 @@ export default function DashboardComponent() {
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Sensors by Type</h2>
           <div className={styles.typeGrid}>
-            {data.sensorsByType.map((item) => (
+            {data.sensorsByType.map((item: any) => (
               <div key={item._id} className={styles.typeChip}>
                 <span className={styles.typeLabel}>
-                  {SENSOR_TYPE_LABELS[item._id] || item._id}
+                  {(SENSOR_TYPE_LABELS as any)[item._id] || item._id}
                 </span>
                 <span className={styles.typeCount}>{item.count}</span>
               </div>
@@ -118,7 +118,7 @@ export default function DashboardComponent() {
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Latest Readings</h2>
           <div className={styles.readingsGrid}>
-            {data.latestReadings.map((reading) => (
+            {data.latestReadings.map((reading: any) => (
               <div key={reading._id.toString()} className={styles.readingCard}>
                 <span className={styles.readingValue}>
                   {typeof reading.value === "number"

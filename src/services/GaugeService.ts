@@ -4,7 +4,7 @@
 
 const API_BASE = "/api/gauge";
 
-async function request(path, options = {}) {
+async function request(path: any, options = {}) {
   const url = `${API_BASE}${path}`;
   const response = await fetch(url, {
     headers: { "Content-Type": "application/json" },
@@ -22,42 +22,42 @@ export async function listSensors(params = {}) {
   return request(`/sensors${qs ? `?${qs}` : ""}`);
 }
 
-export async function getSensor(id) {
+export async function getSensor(id: any) {
   return request(`/sensors/${id}`);
 }
 
-export async function createSensor(data) {
+export async function createSensor(data: any) {
   return request("/sensors", { method: "POST", body: JSON.stringify(data) });
 }
 
-export async function updateSensor(id, data) {
+export async function updateSensor(id: any, data: any) {
   return request(`/sensors/${id}`, { method: "PUT", body: JSON.stringify(data) });
 }
 
-export async function deleteSensor(id) {
+export async function deleteSensor(id: any) {
   return request(`/sensors/${id}`, { method: "DELETE" });
 }
 
 // ─── Readings ──────────────────────────────────────────────────
 
-export async function ingestReading(data) {
+export async function ingestReading(data: any) {
   return request("/readings", { method: "POST", body: JSON.stringify(data) });
 }
 
-export async function ingestBulkReadings(readings) {
+export async function ingestBulkReadings(readings: any) {
   return request("/readings/bulk", { method: "POST", body: JSON.stringify({ readings }) });
 }
 
-export async function getReadings(sensorId, params = {}) {
+export async function getReadings(sensorId: any, params = {}) {
   const qs = new URLSearchParams(params).toString();
   return request(`/readings/${sensorId}${qs ? `?${qs}` : ""}`);
 }
 
-export async function getSparkline(sensorId, hours = 24, points = 50) {
+export async function getSparkline(sensorId: any, hours = 24, points = 50) {
   return request(`/readings/${sensorId}/sparkline?hours=${hours}&points=${points}`);
 }
 
-export async function getReadingStats(sensorId, hours = 24) {
+export async function getReadingStats(sensorId: any, hours = 24) {
   return request(`/readings/${sensorId}/stats?hours=${hours}`);
 }
 
@@ -68,19 +68,19 @@ export async function listAlerts(params = {}) {
   return request(`/alerts${qs ? `?${qs}` : ""}`);
 }
 
-export async function getAlert(id) {
+export async function getAlert(id: any) {
   return request(`/alerts/${id}`);
 }
 
-export async function createAlert(data) {
+export async function createAlert(data: any) {
   return request("/alerts", { method: "POST", body: JSON.stringify(data) });
 }
 
-export async function updateAlert(id, data) {
+export async function updateAlert(id: any, data: any) {
   return request(`/alerts/${id}`, { method: "PUT", body: JSON.stringify(data) });
 }
 
-export async function deleteAlert(id) {
+export async function deleteAlert(id: any) {
   return request(`/alerts/${id}`, { method: "DELETE" });
 }
 
@@ -121,7 +121,7 @@ export async function getEnvironmentDashboard() {
   return request("/weather/environment/dashboard");
 }
 
-export async function getLiveWeather(location, units = "metric") {
+export async function getLiveWeather(location: any, units = "metric") {
   return request(`/weather/live?location=${encodeURIComponent(location)}&units=${units}`);
 }
 

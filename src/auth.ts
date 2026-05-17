@@ -29,7 +29,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn({ user }) {
       if (!AUTH_ENABLED) return true;
       if (ALLOWED_EMAILS.length === 0) return true;
-      return ALLOWED_EMAILS.includes(user.email?.toLowerCase());
+      return ALLOWED_EMAILS.includes(user.email?.toLowerCase() || "");
     },
 
     authorized({ auth: session }) {

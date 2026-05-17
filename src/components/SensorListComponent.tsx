@@ -24,7 +24,7 @@ export default function SensorListComponent() {
     (s.location || "").toLowerCase().includes(search.toLowerCase()),
   );
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     try {
       await add({
@@ -33,7 +33,7 @@ export default function SensorListComponent() {
       });
       setFormData({ name: "", type: "temperature", location: "", description: "" });
       setShowForm(false);
-    } catch (error) {
+    } catch (err: any) {
       console.error("Create sensor failed:", err);
     }
   }
@@ -71,7 +71,7 @@ export default function SensorListComponent() {
           >
             {SENSOR_TYPE_LIST.map((type) => (
               <option key={type} value={type}>
-                {SENSOR_TYPE_LABELS[type] || type}
+                {(SENSOR_TYPE_LABELS as any)[type] || type}
               </option>
             ))}
           </select>
@@ -123,7 +123,7 @@ export default function SensorListComponent() {
       ) : filteredSensors.length > 0 ? (
         <div className={styles.sensorGrid}>
           {filteredSensors.map((sensor) => (
-            <SensorCardComponent key={sensor._id} sensor={sensor} />
+            <SensorCardComponent key={sensor._id} sensor={sensor} onClick={() => {}} />
           ))}
         </div>
       ) : (

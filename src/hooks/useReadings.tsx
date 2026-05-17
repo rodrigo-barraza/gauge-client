@@ -4,10 +4,10 @@ import { useState, useEffect, useCallback } from "react";
 import { getReadings, getSparkline, getReadingStats } from "@/services/GaugeService";
 import { POLL_INTERVAL_READINGS } from "@/constants";
 
-export function useReadings(sensorId, { pollInterval = POLL_INTERVAL_READINGS, hours = 24 } = {}) {
-  const [readings, setReadings] = useState([]);
+export function useReadings(sensorId: any, { pollInterval = POLL_INTERVAL_READINGS, hours = 24 }: any = {}) {
+  const [readings, setReadings] = useState<any[]>([]);
   const [stats, setStats] = useState(null);
-  const [sparkline, setSparkline] = useState([]);
+  const [sparkline, setSparkline] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -23,7 +23,7 @@ export function useReadings(sensorId, { pollInterval = POLL_INTERVAL_READINGS, h
       setStats(statsData);
       setSparkline(sparklineData.data || []);
       setError(null);
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
       setLoading(false);
@@ -47,7 +47,7 @@ export function useReadings(sensorId, { pollInterval = POLL_INTERVAL_READINGS, h
           setError(null);
           setLoading(false);
         }
-      } catch (error) {
+      } catch (error: any) {
         if (!cancelled) {
           setError(error.message);
           setLoading(false);

@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { listSensors, createSensor, updateSensor, deleteSensor } from "@/services/GaugeService";
 import { POLL_INTERVAL_DASHBOARD } from "@/constants";
 
-export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
-  const [sensors, setSensors] = useState([]);
+export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD }: any = {}) {
+  const [sensors, setSensors] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -14,7 +14,7 @@ export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
       const data = await listSensors();
       setSensors(data.sensors || []);
       setError(null);
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
       setLoading(false);
@@ -31,7 +31,7 @@ export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
           setError(null);
           setLoading(false);
         }
-      } catch (error) {
+      } catch (error: any) {
         if (!cancelled) {
           setError(error.message);
           setLoading(false);
@@ -46,21 +46,21 @@ export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
     };
   }, [pollInterval]);
 
-  const add = useCallback(async (data) => {
+  const add = useCallback(async (data: any) => {
     const sensor = await createSensor(data);
-    setSensors((prev) => [sensor, ...prev]);
+    setSensors((prev: any) => [sensor, ...prev]);
     return sensor;
   }, []);
 
-  const update = useCallback(async (id, data) => {
+  const update = useCallback(async (id: any, data: any) => {
     const sensor = await updateSensor(id, data);
-    setSensors((prev) => prev.map((s) => (s._id === id ? sensor : s)));
+    setSensors((prev: any) => prev.map((s: any) => (s._id === id ? sensor : s)));
     return sensor;
   }, []);
 
-  const remove = useCallback(async (id) => {
+  const remove = useCallback(async (id: any) => {
     await deleteSensor(id);
-    setSensors((prev) => prev.filter((s) => s._id !== id));
+    setSensors((prev: any) => prev.filter((s: any) => s._id !== id));
   }, []);
 
   return { sensors, loading, error, refetch: fetchData, add, update, remove };

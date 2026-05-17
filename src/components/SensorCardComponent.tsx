@@ -2,7 +2,7 @@
 
 import styles from "./SensorCardComponent.module.css";
 
-export default function SensorCardComponent({ sensor, onClick }) {
+export default function SensorCardComponent({ sensor, onClick }: { sensor: any; onClick?: any }) {
   const statusClass = sensor.status || "offline";
 
   return (

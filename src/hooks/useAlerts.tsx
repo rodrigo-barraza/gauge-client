@@ -4,9 +4,9 @@ import { useState, useEffect, useCallback } from "react";
 import { listAlerts, createAlert, updateAlert, deleteAlert, getAlertHistory } from "@/services/GaugeService";
 import { POLL_INTERVAL_DASHBOARD } from "@/constants";
 
-export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
-  const [alerts, setAlerts] = useState([]);
-  const [history, setHistory] = useState([]);
+export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD }: any = {}) {
+  const [alerts, setAlerts] = useState<any[]>([]);
+  const [history, setHistory] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,7 +19,7 @@ export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
       setAlerts(alertsData.alerts || []);
       setHistory(historyData.history || []);
       setError(null);
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     } finally {
       setLoading(false);
@@ -40,7 +40,7 @@ export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
           setError(null);
           setLoading(false);
         }
-      } catch (error) {
+      } catch (error: any) {
         if (!cancelled) {
           setError(error.message);
           setLoading(false);
@@ -55,21 +55,21 @@ export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD } = {}) {
     };
   }, [pollInterval]);
 
-  const add = useCallback(async (data) => {
+  const add = useCallback(async (data: any) => {
     const alert = await createAlert(data);
-    setAlerts((prev) => [alert, ...prev]);
+    setAlerts((prev: any) => [alert, ...prev]);
     return alert;
   }, []);
 
-  const update = useCallback(async (id, data) => {
+  const update = useCallback(async (id: any, data: any) => {
     const alert = await updateAlert(id, data);
-    setAlerts((prev) => prev.map((a) => (a._id === id ? alert : a)));
+    setAlerts((prev: any) => prev.map((a: any) => (a._id === id ? alert : a)));
     return alert;
   }, []);
 
-  const remove = useCallback(async (id) => {
+  const remove = useCallback(async (id: any) => {
     await deleteAlert(id);
-    setAlerts((prev) => prev.filter((a) => a._id !== id));
+    setAlerts((prev: any) => prev.filter((a: any) => a._id !== id));
   }, []);
 
   return { alerts, history, loading, error, refetch: fetchData, add, update, remove };

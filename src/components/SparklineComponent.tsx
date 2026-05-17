@@ -2,16 +2,16 @@
 
 import styles from "./SparklineComponent.module.css";
 
-export default function SparklineComponent({ data = [], width = 120, height = 32, color = "var(--color-accent)" }) {
+export default function SparklineComponent({ data = [], width = 120, height = 32, color = "var(--color-accent)" }: any) {
   if (!data.length) return null;
 
-  const values = data.map((d) => (typeof d === "object" ? d.value : d));
+  const values = data.map((d: any) => (typeof d === "object" ? d.value : d));
   const min = Math.min(...values);
   const max = Math.max(...values);
   const range = max - min || 1;
 
   const points = values
-    .map((v, i) => {
+    .map((v: any, i: any) => {
       const x = (i / (values.length - 1)) * width;
       const y = height - ((v - min) / range) * (height - 4) - 2;
       return `${x},${y}`;

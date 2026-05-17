@@ -20,7 +20,7 @@ export default function AlertListComponent() {
     message: "",
   });
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     try {
       await add({
@@ -29,7 +29,7 @@ export default function AlertListComponent() {
       });
       setFormData({ name: "", sensorId: "", condition: "above", threshold: "", severity: "warning", message: "" });
       setShowForm(false);
-    } catch (error) {
+    } catch (err: any) {
       console.error("Create alert failed:", err);
     }
   }
@@ -53,7 +53,7 @@ export default function AlertListComponent() {
           <select className={styles.select} value={formData.sensorId} onChange={(e) => setFormData({ ...formData, sensorId: e.target.value })} required>
             <option value="">Select sensor...</option>
             {sensors.map((s) => (
-              <option key={s._id} value={s._id}>{s.name} ({SENSOR_TYPE_LABELS[s.type] || s.type})</option>
+              <option key={s._id} value={s._id}>{s.name} ({(SENSOR_TYPE_LABELS as any)[s.type] || s.type})</option>
             ))}
           </select>
           <select className={styles.select} value={formData.condition} onChange={(e) => setFormData({ ...formData, condition: e.target.value })}>
