@@ -48,7 +48,7 @@ COPY --from=builder /app/public ./public
 # Copy standalone server, static assets, and boot script
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/boot.js ./boot.js
+COPY --from=builder --chown=nextjs:nodejs /app/boot.ts ./boot.ts
 
 USER nextjs
 
@@ -57,4 +57,4 @@ EXPOSE 3006
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD wget --no-verbose --tries=1 -O /dev/null http://127.0.0.1:3006/ || exit 1
 
-CMD ["node", "boot.js"]
+CMD ["node", "boot.ts"]
