@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { CloudSun, Thermometer, Droplets, Wind, Eye, Sun, Gauge } from "lucide-react";

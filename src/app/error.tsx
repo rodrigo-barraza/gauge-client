@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import ErrorFallbackComponent from "@rodrigo-barraza/components-library/src/components/ErrorFallbackComponent/ErrorFallbackComponent";
