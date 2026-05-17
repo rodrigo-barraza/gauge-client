@@ -5,6 +5,7 @@
 # Thin wrapper — all logic lives in ../deploy-kit/lib.sh
 # Hook: injects VAULT_SERVICE_URL as build arg and VAULT_SERVICE_TOKEN
 #       as a BuildKit secret for Next.js secret resolution at build time.
+# Extra: --network=host for build, 30 tail lines
 #
 # Usage:
 #   npm run deploy              # full deploy
@@ -16,12 +17,15 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 IMAGE_NAME="gauge-client"
 DISPLAY_NAME="🌡️ Gauge Client"
+BUILD_EXTRA_FLAGS="--network=host"
+BUILD_TAIL_LINES=30
 
 # ── Inject Vault credentials for Docker build ─────────────────
 PRE_BUILD() {
-  if [ -f "${SCRIPT_DIR}/.env.deploy" ]; then
-    set -a; source "${SCRIPT_DIR}/.env.deploy"; set +a
-    info "Loaded .env.deploy"
+  local CENTRAL_ENV="${DEPLOY_KIT_DIR}/.env.deploy"
+  if [ -f "$CENTRAL_ENV" ]; then
+    set -a; source "$CENTRAL_ENV"; set +a
+    info "Loaded deploy-kit/.env.deploy"
   fi
   if [ -n "${VAULT_SERVICE_URL:-}" ]; then
     BUILD_ARGS="--build-arg VAULT_SERVICE_URL=${VAULT_SERVICE_URL}"
