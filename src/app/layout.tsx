@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ComponentsProvider, ThemeProvider } from "@rodrigo-barraza/components-library";
 import "./globals.css";

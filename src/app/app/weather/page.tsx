@@ -1,4 +1,3 @@
-// @ts-nocheck
 import WeatherOverviewComponent from "@/components/WeatherOverviewComponent";
 
 export default function WeatherPage() {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Catch-all API proxy for gauge-service.
  * Forwards requests from /api/gauge/[...path] → gauge-service:5607/[path].
