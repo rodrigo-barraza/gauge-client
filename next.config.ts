@@ -20,7 +20,10 @@ const nextConfig: NextConfig = {
   output: "standalone",
   allowedDevOrigins: [],
   turbopack: {},
-  transpilePackages: ["@rodrigo-barraza/components-library", "@rodrigo-barraza/utilities-library"],
+  transpilePackages: [
+    "@rodrigo-barraza/components-library",
+    "@rodrigo-barraza/utilities-library",
+  ],
 
   env: {
     GAUGE_CLIENT_PORT: secrets.GAUGE_CLIENT_PORT,

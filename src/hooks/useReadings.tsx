@@ -1,10 +1,17 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { getReadings, getSparkline, getReadingStats } from "@/services/GaugeService";
+import {
+  getReadings,
+  getSparkline,
+  getReadingStats,
+} from "@/services/GaugeService";
 import { POLL_INTERVAL_READINGS } from "@/constants";
 
-export function useReadings(sensorId: any, { pollInterval = POLL_INTERVAL_READINGS, hours = 24 }: any = {}) {
+export function useReadings(
+  sensorId: any,
+  { pollInterval = POLL_INTERVAL_READINGS, hours = 24 }: any = {},
+) {
   const [readings, setReadings] = useState<any[]>([]);
   const [stats, setStats] = useState(null);
   const [sparkline, setSparkline] = useState<any[]>([]);

@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { getEnvironmentDashboard, getCurrentWeather } from "@/services/GaugeService";
+import {
+  getEnvironmentDashboard,
+  getCurrentWeather,
+} from "@/services/GaugeService";
 import { POLL_INTERVAL_WEATHER } from "@/constants";
 
 export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER }: any = {}) {

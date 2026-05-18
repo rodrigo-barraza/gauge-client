@@ -1,5 +1,9 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { ComponentsProvider, ThemeProvider } from "@rodrigo-barraza/components-library";
+import {
+  ComponentsProvider,
+  ThemeProvider,
+  generateThemeInitScript,
+} from "@rodrigo-barraza/components-library";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,40 +38,20 @@ export const metadata = {
   },
 };
 
-/**
- * Inline blocking script to set data-theme before first paint,
- * preventing FOUC (Flash of Unstyled Content).
- */
-const themeInitScript = `
-(function(){
-  try {
-    var raw = localStorage.getItem('gauge:theme');
-    if (raw) {
-      var theme = JSON.parse(raw);
-      if (theme === 'light' || theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', theme);
-      }
-    }
-  } catch (error) { console.warn('Theme initialization failed:', e.message); }
-})();
-`;
-
 export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <template
           dangerouslySetInnerHTML={{
-            __html: `<script>${themeInitScript}</script>`,
+            __html: `<script>${generateThemeInitScript("gauge:theme")}</script>`,
           }}
           suppressHydrationWarning
         />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
         <ThemeProvider storageKey="gauge:theme" defaultTheme="dark">
-          <ComponentsProvider>
-            {children}
-          </ComponentsProvider>
+          <ComponentsProvider>{children}</ComponentsProvider>
         </ThemeProvider>
       </body>
     </html>

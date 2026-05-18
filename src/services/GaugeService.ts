@@ -11,7 +11,8 @@ async function request(path: any, options = {}) {
     ...options,
   });
   const data = await response.json();
-  if (!response.ok) throw new Error(data.error || `Request failed: ${response.status}`);
+  if (!response.ok)
+    throw new Error(data.error || `Request failed: ${response.status}`);
   return data;
 }
 
@@ -31,7 +32,10 @@ export async function createSensor(data: any) {
 }
 
 export async function updateSensor(id: any, data: any) {
-  return request(`/sensors/${id}`, { method: "PUT", body: JSON.stringify(data) });
+  return request(`/sensors/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
 }
 
 export async function deleteSensor(id: any) {
@@ -45,7 +49,10 @@ export async function ingestReading(data: any) {
 }
 
 export async function ingestBulkReadings(readings: any) {
-  return request("/readings/bulk", { method: "POST", body: JSON.stringify({ readings }) });
+  return request("/readings/bulk", {
+    method: "POST",
+    body: JSON.stringify({ readings }),
+  });
 }
 
 export async function getReadings(sensorId: any, params = {}) {
@@ -54,7 +61,9 @@ export async function getReadings(sensorId: any, params = {}) {
 }
 
 export async function getSparkline(sensorId: any, hours = 24, points = 50) {
-  return request(`/readings/${sensorId}/sparkline?hours=${hours}&points=${points}`);
+  return request(
+    `/readings/${sensorId}/sparkline?hours=${hours}&points=${points}`,
+  );
 }
 
 export async function getReadingStats(sensorId: any, hours = 24) {
@@ -77,7 +86,10 @@ export async function createAlert(data: any) {
 }
 
 export async function updateAlert(id: any, data: any) {
-  return request(`/alerts/${id}`, { method: "PUT", body: JSON.stringify(data) });
+  return request(`/alerts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
 }
 
 export async function deleteAlert(id: any) {
@@ -122,7 +134,9 @@ export async function getEnvironmentDashboard() {
 }
 
 export async function getLiveWeather(location: any, units = "metric") {
-  return request(`/weather/live?location=${encodeURIComponent(location)}&units=${units}`);
+  return request(
+    `/weather/live?location=${encodeURIComponent(location)}&units=${units}`,
+  );
 }
 
 export async function getSpaceWeather() {

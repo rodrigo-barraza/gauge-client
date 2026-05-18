@@ -164,7 +164,12 @@
 
 .skeleton {
   height: 160px;
-  background: linear-gradient(90deg, var(--color-bg-card) 25%, var(--color-bg-card-hover) 50%, var(--color-bg-card) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-card) 25%,
+    var(--color-bg-card-hover) 50%,
+    var(--color-bg-card) 75%
+  );
   background-size: 200% 100%;
   border-radius: var(--radius-lg);
   animation: shimmer 1.5s ease-in-out infinite;

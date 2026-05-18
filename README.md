@@ -31,4 +31,3 @@ npm run test:watch    # Run tests in watch mode
 npm run deploy        # Deploy to production
 npm run deploy:dry    # Validate deployment without deploying
 ```
-

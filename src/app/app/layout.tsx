@@ -20,9 +20,7 @@ export default function AppLayout({ children }: { children: any }) {
         title="Gauge"
         storageKey="gauge:sidebar"
       />
-      <main className={styles.mainContent}>
-        {children}
-      </main>
+      <main className={styles.mainContent}>{children}</main>
     </div>
   );
 }

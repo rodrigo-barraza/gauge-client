@@ -1,10 +1,18 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { listAlerts, createAlert, updateAlert, deleteAlert, getAlertHistory } from "@/services/GaugeService";
+import {
+  listAlerts,
+  createAlert,
+  updateAlert,
+  deleteAlert,
+  getAlertHistory,
+} from "@/services/GaugeService";
 import { POLL_INTERVAL_DASHBOARD } from "@/constants";
 
-export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD }: any = {}) {
+export function useAlerts({
+  pollInterval = POLL_INTERVAL_DASHBOARD,
+}: any = {}) {
   const [alerts, setAlerts] = useState<any[]>([]);
   const [history, setHistory] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -72,5 +80,14 @@ export function useAlerts({ pollInterval = POLL_INTERVAL_DASHBOARD }: any = {}) 
     setAlerts((prev: any) => prev.filter((a: any) => a._id !== id));
   }, []);
 
-  return { alerts, history, loading, error, refetch: fetchData, add, update, remove };
+  return {
+    alerts,
+    history,
+    loading,
+    error,
+    refetch: fetchData,
+    add,
+    update,
+    remove,
+  };
 }

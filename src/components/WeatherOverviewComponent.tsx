@@ -1,6 +1,14 @@
 "use client";
 
-import { CloudSun, Thermometer, Droplets, Wind, Eye, Sun, Gauge } from "lucide-react";
+import {
+  CloudSun,
+  Thermometer,
+  Droplets,
+  Wind,
+  Eye,
+  Sun,
+  Gauge,
+} from "lucide-react";
 import { useWeather } from "@/hooks/useWeather";
 import styles from "./WeatherOverviewComponent.module.css";
 
@@ -34,7 +42,9 @@ export default function WeatherOverviewComponent() {
           <CloudSun size={48} style={{ opacity: 0.3 }} />
           <h3>Weather Data Unavailable</h3>
           <p>{error}</p>
-          <p className={styles.hint}>Make sure tools-service is running and reachable.</p>
+          <p className={styles.hint}>
+            Make sure tools-service is running and reachable.
+          </p>
         </div>
       </div>
     );
@@ -46,26 +56,63 @@ export default function WeatherOverviewComponent() {
   const humidity = current.humidity ?? "—";
   const windSpeed = current.windSpeed ?? current.wind_speed ?? "—";
   const visibility = current.visibility ?? "—";
-  const description = current.description || current.condition || current.summary || "";
+  const description =
+    current.description || current.condition || current.summary || "";
   const feelsLike = current.feelsLike ?? current.feels_like ?? null;
   const pressure = current.pressure ?? null;
   const uvIndex = current.uvIndex ?? current.uv ?? null;
 
   const weatherCards = [
-    { label: "Temperature", value: typeof temp === "number" ? `${temp.toFixed(1)}°C` : temp, icon: Thermometer, color: "var(--color-accent)" },
-    { label: "Humidity", value: typeof humidity === "number" ? `${humidity}%` : humidity, icon: Droplets, color: "var(--color-info)" },
-    { label: "Wind Speed", value: typeof windSpeed === "number" ? `${windSpeed} km/h` : windSpeed, icon: Wind, color: "var(--color-success)" },
-    { label: "Visibility", value: typeof visibility === "number" ? `${visibility} km` : visibility, icon: Eye, color: "var(--color-text-secondary)" },
+    {
+      label: "Temperature",
+      value: typeof temp === "number" ? `${temp.toFixed(1)}°C` : temp,
+      icon: Thermometer,
+      color: "var(--color-accent)",
+    },
+    {
+      label: "Humidity",
+      value: typeof humidity === "number" ? `${humidity}%` : humidity,
+      icon: Droplets,
+      color: "var(--color-info)",
+    },
+    {
+      label: "Wind Speed",
+      value: typeof windSpeed === "number" ? `${windSpeed} km/h` : windSpeed,
+      icon: Wind,
+      color: "var(--color-success)",
+    },
+    {
+      label: "Visibility",
+      value: typeof visibility === "number" ? `${visibility} km` : visibility,
+      icon: Eye,
+      color: "var(--color-text-secondary)",
+    },
   ];
 
   if (feelsLike !== null) {
-    weatherCards.push({ label: "Feels Like", value: typeof feelsLike === "number" ? `${feelsLike.toFixed(1)}°C` : feelsLike, icon: Thermometer, color: "var(--color-warning)" });
+    weatherCards.push({
+      label: "Feels Like",
+      value:
+        typeof feelsLike === "number" ? `${feelsLike.toFixed(1)}°C` : feelsLike,
+      icon: Thermometer,
+      color: "var(--color-warning)",
+    });
   }
   if (pressure !== null) {
-    weatherCards.push({ label: "Pressure", value: typeof pressure === "number" ? `${pressure} hPa` : pressure, icon: Gauge, color: "var(--color-text-muted)" });
+    weatherCards.push({
+      label: "Pressure",
+      value: typeof pressure === "number" ? `${pressure} hPa` : pressure,
+      icon: Gauge,
+      color: "var(--color-text-muted)",
+    });
   }
   if (uvIndex !== null) {
-    weatherCards.push({ label: "UV Index", value: uvIndex, icon: Sun, color: "var(--color-warning)" });
+    weatherCards.push({
+      label: "UV Index",
+      value: uvIndex,
+      icon: Sun,
+      color: "var(--color-warning)",
+    });
   }
 
   return (
@@ -109,7 +156,10 @@ export default function WeatherOverviewComponent() {
               <div className={styles.envCard}>
                 <h3>Air Quality</h3>
                 <pre className={styles.envData}>
-                  {JSON.stringify(environment.airQuality, null, 2).slice(0, 300)}
+                  {JSON.stringify(environment.airQuality, null, 2).slice(
+                    0,
+                    300,
+                  )}
                 </pre>
               </div>
             )}
@@ -117,7 +167,10 @@ export default function WeatherOverviewComponent() {
               <div className={styles.envCard}>
                 <h3>Space Weather</h3>
                 <pre className={styles.envData}>
-                  {JSON.stringify(environment.spaceWeather, null, 2).slice(0, 300)}
+                  {JSON.stringify(environment.spaceWeather, null, 2).slice(
+                    0,
+                    300,
+                  )}
                 </pre>
               </div>
             )}

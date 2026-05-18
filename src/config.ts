@@ -26,7 +26,8 @@
 
 const IS_BROWSER = typeof window !== "undefined";
 
-export const IS_PRODUCTION = IS_BROWSER && window.location.hostname.endsWith(".dev");
+export const IS_PRODUCTION =
+  IS_BROWSER && window.location.hostname.endsWith(".dev");
 export const IS_LOCALHOST = !IS_PRODUCTION;
 
 export const PROJECT_NAME = IS_PRODUCTION ? "gauge-client" : "gauge-client-dev";
@@ -40,7 +41,8 @@ const RAW_SERVICE_URL =
 
 // ── Public URL from vault (browser production override) ────────
 const PUBLIC_SERVICE_URL =
-  process.env.NEXT_PUBLIC_GAUGE_SERVICE_PUBLIC_URL || process.env.GAUGE_SERVICE_PUBLIC_URL;
+  process.env.NEXT_PUBLIC_GAUGE_SERVICE_PUBLIC_URL ||
+  process.env.GAUGE_SERVICE_PUBLIC_URL;
 
 // ── Gauge Service URL ──────────────────────────────────────────
 function resolveServiceUrl() {

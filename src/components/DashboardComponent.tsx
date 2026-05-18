@@ -54,13 +54,19 @@ export default function DashboardComponent() {
       label: "Active Alerts",
       value: data?.alerts?.active || 0,
       icon: Bell,
-      color: data?.alerts?.active > 0 ? "var(--color-warning)" : "var(--color-success)",
+      color:
+        data?.alerts?.active > 0
+          ? "var(--color-warning)"
+          : "var(--color-success)",
     },
     {
       label: "Triggered (24h)",
       value: data?.alerts?.triggered24h || 0,
       icon: Bell,
-      color: data?.alerts?.triggered24h > 0 ? "var(--color-error)" : "var(--color-muted)",
+      color:
+        data?.alerts?.triggered24h > 0
+          ? "var(--color-error)"
+          : "var(--color-muted)",
     },
     {
       label: "Sensor Types",

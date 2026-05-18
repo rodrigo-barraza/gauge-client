@@ -1,10 +1,17 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { listSensors, createSensor, updateSensor, deleteSensor } from "@/services/GaugeService";
+import {
+  listSensors,
+  createSensor,
+  updateSensor,
+  deleteSensor,
+} from "@/services/GaugeService";
 import { POLL_INTERVAL_DASHBOARD } from "@/constants";
 
-export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD }: any = {}) {
+export function useSensors({
+  pollInterval = POLL_INTERVAL_DASHBOARD,
+}: any = {}) {
   const [sensors, setSensors] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -54,7 +61,9 @@ export function useSensors({ pollInterval = POLL_INTERVAL_DASHBOARD }: any = {})
 
   const update = useCallback(async (id: any, data: any) => {
     const sensor = await updateSensor(id, data);
-    setSensors((prev: any) => prev.map((s: any) => (s._id === id ? sensor : s)));
+    setSensors((prev: any) =>
+      prev.map((s: any) => (s._id === id ? sensor : s)),
+    );
     return sensor;
   }, []);
 

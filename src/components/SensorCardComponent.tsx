@@ -2,15 +2,27 @@
 
 import styles from "./SensorCardComponent.module.css";
 
-export default function SensorCardComponent({ sensor, onClick }: { sensor: any; onClick?: any }) {
+export default function SensorCardComponent({
+  sensor,
+  onClick,
+}: {
+  sensor: any;
+  onClick?: any;
+}) {
   const statusClass = sensor.status || "offline";
 
   return (
-    <button className={styles.card} onClick={() => onClick?.(sensor)} type="button">
+    <button
+      className={styles.card}
+      onClick={() => onClick?.(sensor)}
+      type="button"
+    >
       <div className={styles.header}>
         <span className={`status-dot ${statusClass}`} />
         <span className={styles.name}>{sensor.name}</span>
-        <span className={`badge ${statusClass === "online" ? "success" : statusClass === "warning" ? "warning" : "info"}`}>
+        <span
+          className={`badge ${statusClass === "online" ? "success" : statusClass === "warning" ? "warning" : "info"}`}
+        >
           {sensor.status}
         </span>
       </div>

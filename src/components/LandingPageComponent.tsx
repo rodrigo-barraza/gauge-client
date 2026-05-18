@@ -1,39 +1,54 @@
 "use client";
 
 import Link from "next/link";
-import { Thermometer, Droplets, Wind, Activity, Bell, BarChart3, CloudSun, Cpu } from "lucide-react";
+import {
+  Thermometer,
+  Droplets,
+  Wind,
+  Activity,
+  Bell,
+  BarChart3,
+  CloudSun,
+  Cpu,
+} from "lucide-react";
 import styles from "./LandingPageComponent.module.css";
 
 const FEATURES = [
   {
     icon: Thermometer,
     title: "Multi-Sensor Support",
-    description: "Temperature, humidity, pressure, air quality, UV, CO₂, PM2.5, and custom sensor types.",
+    description:
+      "Temperature, humidity, pressure, air quality, UV, CO₂, PM2.5, and custom sensor types.",
   },
   {
     icon: CloudSun,
     title: "Live Weather Data",
-    description: "Real-time weather, forecasts, air quality, space weather, and pollen data via integrated services.",
+    description:
+      "Real-time weather, forecasts, air quality, space weather, and pollen data via integrated services.",
   },
   {
     icon: Bell,
     title: "Smart Alerts",
-    description: "Threshold-based alerts with severity levels. Get notified when sensors breach critical limits.",
+    description:
+      "Threshold-based alerts with severity levels. Get notified when sensors breach critical limits.",
   },
   {
     icon: BarChart3,
     title: "Time-Series Analytics",
-    description: "Sparkline visualizations, aggregate stats, and historical trend analysis for every sensor.",
+    description:
+      "Sparkline visualizations, aggregate stats, and historical trend analysis for every sensor.",
   },
   {
     icon: Activity,
     title: "Real-Time Dashboard",
-    description: "Live sensor grid with auto-refreshing readings, status indicators, and at-a-glance metrics.",
+    description:
+      "Live sensor grid with auto-refreshing readings, status indicators, and at-a-glance metrics.",
   },
   {
     icon: Cpu,
     title: "Hardware Agnostic",
-    description: "REST API accepts readings from any source — ESP32, Raspberry Pi, Arduino, or custom IoT devices.",
+    description:
+      "REST API accepts readings from any source — ESP32, Raspberry Pi, Arduino, or custom IoT devices.",
   },
 ];
 
@@ -74,10 +89,30 @@ export default function LandingPageComponent() {
         <div className={styles.heroVisual}>
           <div className={styles.sensorGrid}>
             {[
-              { label: "Temperature", value: "22.4°C", icon: Thermometer, color: "var(--color-accent)" },
-              { label: "Humidity", value: "67%", icon: Droplets, color: "var(--color-info)" },
-              { label: "Wind", value: "12 km/h", icon: Wind, color: "var(--color-success)" },
-              { label: "AQI", value: "42", icon: Activity, color: "var(--color-warning)" },
+              {
+                label: "Temperature",
+                value: "22.4°C",
+                icon: Thermometer,
+                color: "var(--color-accent)",
+              },
+              {
+                label: "Humidity",
+                value: "67%",
+                icon: Droplets,
+                color: "var(--color-info)",
+              },
+              {
+                label: "Wind",
+                value: "12 km/h",
+                icon: Wind,
+                color: "var(--color-success)",
+              },
+              {
+                label: "AQI",
+                value: "42",
+                icon: Activity,
+                color: "var(--color-warning)",
+              },
             ].map((sensor, i) => (
               <div
                 key={sensor.label}
@@ -85,8 +120,12 @@ export default function LandingPageComponent() {
                 style={{ animationDelay: `${i * 150}ms` }}
               >
                 <sensor.icon size={18} style={{ color: sensor.color }} />
-                <span className={styles.sensorPreviewValue}>{sensor.value}</span>
-                <span className={styles.sensorPreviewLabel}>{sensor.label}</span>
+                <span className={styles.sensorPreviewValue}>
+                  {sensor.value}
+                </span>
+                <span className={styles.sensorPreviewLabel}>
+                  {sensor.label}
+                </span>
               </div>
             ))}
           </div>
@@ -97,8 +136,8 @@ export default function LandingPageComponent() {
       <section className={styles.features}>
         <h2 className={styles.sectionTitle}>Everything You Need</h2>
         <p className={styles.sectionSubtitle}>
-          Built for makers, developers, and anyone who wants to understand
-          their environment better.
+          Built for makers, developers, and anyone who wants to understand their
+          environment better.
         </p>
         <div className={styles.featureGrid}>
           {FEATURES.map((feature, i) => (

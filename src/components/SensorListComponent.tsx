@@ -18,10 +18,11 @@ export default function SensorListComponent() {
     description: "",
   });
 
-  const filteredSensors = sensors.filter((s) =>
-    s.name.toLowerCase().includes(search.toLowerCase()) ||
-    s.type.toLowerCase().includes(search.toLowerCase()) ||
-    (s.location || "").toLowerCase().includes(search.toLowerCase()),
+  const filteredSensors = sensors.filter(
+    (s) =>
+      s.name.toLowerCase().includes(search.toLowerCase()) ||
+      s.type.toLowerCase().includes(search.toLowerCase()) ||
+      (s.location || "").toLowerCase().includes(search.toLowerCase()),
   );
 
   async function handleSubmit(e: any) {
@@ -31,7 +32,12 @@ export default function SensorListComponent() {
         ...formData,
         unit: UNIT_MAP[formData.type] || "",
       });
-      setFormData({ name: "", type: "temperature", location: "", description: "" });
+      setFormData({
+        name: "",
+        type: "temperature",
+        location: "",
+        description: "",
+      });
       setShowForm(false);
     } catch (err: any) {
       console.error("Create sensor failed:", err);
@@ -79,13 +85,17 @@ export default function SensorListComponent() {
             className={styles.input}
             placeholder="Location (optional)"
             value={formData.location}
-            onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, location: e.target.value })
+            }
           />
           <input
             className={styles.input}
             placeholder="Description (optional)"
             value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, description: e.target.value })
+            }
           />
           <div className={styles.formActions}>
             <button type="submit" className={styles.submitButton}>
@@ -123,17 +133,23 @@ export default function SensorListComponent() {
       ) : filteredSensors.length > 0 ? (
         <div className={styles.sensorGrid}>
           {filteredSensors.map((sensor) => (
-            <SensorCardComponent key={sensor._id} sensor={sensor} onClick={() => {}} />
+            <SensorCardComponent
+              key={sensor._id}
+              sensor={sensor}
+              onClick={() => {}}
+            />
           ))}
         </div>
       ) : (
         <div className={styles.emptyState}>
           <Cpu size={48} style={{ opacity: 0.3 }} />
-          <h3>{search ? "No sensors match your search" : "No sensors registered"}</h3>
+          <h3>
+            {search ? "No sensors match your search" : "No sensors registered"}
+          </h3>
           <p>
             {search
               ? "Try a different search term."
-              : "Click \"Add Sensor\" to register your first device."}
+              : 'Click "Add Sensor" to register your first device.'}
           </p>
         </div>
       )}

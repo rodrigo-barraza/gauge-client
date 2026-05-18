@@ -23,7 +23,11 @@
   right: -100px;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, var(--color-accent-glow), transparent 70%);
+  background: radial-gradient(
+    circle,
+    var(--color-accent-glow),
+    transparent 70%
+  );
   opacity: 0.4;
   pointer-events: none;
   animation: pulse 6s ease-in-out infinite;

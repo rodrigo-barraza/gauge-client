@@ -2,7 +2,12 @@
 
 import styles from "./SparklineComponent.module.css";
 
-export default function SparklineComponent({ data = [], width = 120, height = 32, color = "var(--color-accent)" }: any) {
+export default function SparklineComponent({
+  data = [],
+  width = 120,
+  height = 32,
+  color = "var(--color-accent)",
+}: any) {
   if (!data.length) return null;
 
   const values = data.map((d: any) => (typeof d === "object" ? d.value : d));
@@ -29,7 +34,13 @@ export default function SparklineComponent({ data = [], width = 120, height = 32
       viewBox={`0 0 ${width} ${height}`}
     >
       <defs>
-        <linearGradient id={`sparkGrad-${color.replace(/[^a-z0-9]/gi, "")}`} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient
+          id={`sparkGrad-${color.replace(/[^a-z0-9]/gi, "")}`}
+          x1="0"
+          y1="0"
+          x2="0"
+          y2="1"
+        >
           <stop offset="0%" stopColor={color} stopOpacity="0.3" />
           <stop offset="100%" stopColor={color} stopOpacity="0" />
         </linearGradient>
