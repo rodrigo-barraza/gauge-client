@@ -2,7 +2,7 @@
 // Gauge Client — Runtime Configuration
 // ============================================================
 // Typed accessor layer over process.env. The Vault service is
-// the single source of truth — next.config.mjs hydrates
+// the single source of truth — next.config.ts hydrates
 // process.env from the Vault before any module imports run.
 //
 // This file contains NO defaults, NO secrets, and NO hardcoded

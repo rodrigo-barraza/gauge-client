@@ -1,7 +1,7 @@
 // ============================================================
 // Gauge Client — Next.js Configuration
 // ============================================================
-// Bootstraps secrets from Vault (or .env fallback) at startup
+// Bootstraps secrets from Vault at startup
 // and injects them into process.env for the app.
 // ============================================================
 
@@ -9,14 +9,11 @@ import { createVaultClient } from "@rodrigo-barraza/utilities-library/node";
 import type { NextConfig } from "next";
 
 // ── Bootstrap secrets at build/dev time ────────────────────────
-const vault = createVaultClient({
-  localEnvFile: "./.env",
-  fallbackEnvFile: "../vault-service/.env",
-});
+const vault = createVaultClient();
 
 const secrets = vault.fetchSync();
 
-// Inject into process.env so config.js can read them
+// Inject into process.env so config.ts can read them
 Object.assign(process.env, secrets);
 
 const nextConfig: NextConfig = {
