@@ -33,12 +33,18 @@ yarn-error.log*
 .env.*
 !.env.example
 
+# editor settings (local)
+.vscode/settings.json
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# WSL artifacts
+*:Zone.Identifier
 
 # logs
 *.log
