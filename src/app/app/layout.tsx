@@ -5,7 +5,7 @@ import { NavigationSidebarComponent } from "@rodrigo-barraza/components-library"
 import { NAV_ITEMS } from "@/constants";
 import styles from "./layout.module.css";
 
-export default function AppLayout({ children }: { children: any }) {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   const navItems = NAV_ITEMS.map((item) => ({

@@ -109,7 +109,7 @@ export default function WeatherOverviewComponent() {
   if (uvIndex !== null) {
     weatherCards.push({
       label: "UV Index",
-      value: uvIndex,
+      value: String(uvIndex),
       icon: Sun,
       color: "var(--color-warning)",
     });

@@ -85,7 +85,7 @@ export default function AlertListComponent() {
             <option value="">Select sensor...</option>
             {sensors.map((s) => (
               <option key={s._id} value={s._id}>
-                {s.name} ({SENSOR_TYPE_LABELS[s.type] || s.type})
+                {s.name} ({SENSOR_TYPE_LABELS[s.type || ""] || s.type})
               </option>
             ))}
           </select>
@@ -165,7 +165,7 @@ export default function AlertListComponent() {
                   <div className={styles.alertMeta}>
                     {sensor?.name || "Unknown sensor"} · {alert.condition}{" "}
                     {alert.threshold}
-                    {alert.triggerCount > 0 && (
+                    {(alert.triggerCount || 0) > 0 && (
                       <span className={styles.triggerCount}>
                         <AlertTriangle size={12} />
                         {alert.triggerCount}× triggered
@@ -181,7 +181,7 @@ export default function AlertListComponent() {
                   </span>
                   <button
                     className={styles.deleteButton}
-                    onClick={() => remove(alert._id)}
+                    onClick={() => remove(alert._id!)}
                     title="Delete alert"
                   >
                     <Trash2 size={14} />
@@ -216,7 +216,7 @@ export default function AlertListComponent() {
                   Value: {event.value} {event.condition} {event.threshold}
                 </span>
                 <span className={styles.historyTime}>
-                  {new Date(event.triggeredAt).toLocaleString()}
+                  {new Date(event.triggeredAt || 0).toLocaleString()}
                 </span>
               </div>
             ))}

@@ -6,8 +6,17 @@ export default function SensorCardComponent({
   sensor,
   onClick,
 }: {
-  sensor: any;
-  onClick?: any;
+  sensor: {
+    _id?: string;
+    name?: string;
+    status?: string;
+    lastReading?: number | string | null;
+    unit?: string;
+    type?: string;
+    location?: string;
+    lastReadingAt?: string | number | null;
+  };
+  onClick?: (sensor: unknown) => void;
 }) {
   const statusClass = sensor.status || "offline";
 

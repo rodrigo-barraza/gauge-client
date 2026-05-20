@@ -4,7 +4,7 @@
 
 const API_BASE = "/api/gauge";
 
-async function request(path: any, options = {}) {
+async function request(path: string, options: RequestInit = {}) {
   const url = `${API_BASE}${path}`;
   const response = await fetch(url, {
     headers: { "Content-Type": "application/json" },
@@ -18,85 +18,85 @@ async function request(path: any, options = {}) {
 
 // ─── Sensors ───────────────────────────────────────────────────
 
-export async function listSensors(params = {}) {
+export async function listSensors(params: Record<string, string> = {}) {
   const qs = new URLSearchParams(params).toString();
   return request(`/sensors${qs ? `?${qs}` : ""}`);
 }
 
-export async function getSensor(id: any) {
+export async function getSensor(id: string) {
   return request(`/sensors/${id}`);
 }
 
-export async function createSensor(data: any) {
+export async function createSensor(data: Record<string, unknown>) {
   return request("/sensors", { method: "POST", body: JSON.stringify(data) });
 }
 
-export async function updateSensor(id: any, data: any) {
+export async function updateSensor(id: string, data: Record<string, unknown>) {
   return request(`/sensors/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
 }
 
-export async function deleteSensor(id: any) {
+export async function deleteSensor(id: string) {
   return request(`/sensors/${id}`, { method: "DELETE" });
 }
 
 // ─── Readings ──────────────────────────────────────────────────
 
-export async function ingestReading(data: any) {
+export async function ingestReading(data: Record<string, unknown>) {
   return request("/readings", { method: "POST", body: JSON.stringify(data) });
 }
 
-export async function ingestBulkReadings(readings: any) {
+export async function ingestBulkReadings(readings: Record<string, unknown>[]) {
   return request("/readings/bulk", {
     method: "POST",
     body: JSON.stringify({ readings }),
   });
 }
 
-export async function getReadings(sensorId: any, params = {}) {
+export async function getReadings(sensorId: string, params: Record<string, string> = {}) {
   const qs = new URLSearchParams(params).toString();
   return request(`/readings/${sensorId}${qs ? `?${qs}` : ""}`);
 }
 
-export async function getSparkline(sensorId: any, hours = 24, points = 50) {
+export async function getSparkline(sensorId: string, hours = 24, points = 50) {
   return request(
     `/readings/${sensorId}/sparkline?hours=${hours}&points=${points}`,
   );
 }
 
-export async function getReadingStats(sensorId: any, hours = 24) {
+export async function getReadingStats(sensorId: string, hours = 24) {
   return request(`/readings/${sensorId}/stats?hours=${hours}`);
 }
 
 // ─── Alerts ────────────────────────────────────────────────────
 
-export async function listAlerts(params = {}) {
+export async function listAlerts(params: Record<string, string> = {}) {
   const qs = new URLSearchParams(params).toString();
   return request(`/alerts${qs ? `?${qs}` : ""}`);
 }
 
-export async function getAlert(id: any) {
+export async function getAlert(id: string) {
   return request(`/alerts/${id}`);
 }
 
-export async function createAlert(data: any) {
+export async function createAlert(data: Record<string, unknown>) {
   return request("/alerts", { method: "POST", body: JSON.stringify(data) });
 }
 
-export async function updateAlert(id: any, data: any) {
+export async function updateAlert(id: string, data: Record<string, unknown>) {
   return request(`/alerts/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
 }
 
-export async function deleteAlert(id: any) {
+export async function deleteAlert(id: string) {
   return request(`/alerts/${id}`, { method: "DELETE" });
 }
 
-export async function getAlertHistory(params = {}) {
+export async function getAlertHistory(params: Record<string, string> = {}) {
   const qs = new URLSearchParams(params).toString();
   return request(`/alerts/history${qs ? `?${qs}` : ""}`);
 }
@@ -133,7 +133,7 @@ export async function getEnvironmentDashboard() {
   return request("/weather/environment/dashboard");
 }
 
-export async function getLiveWeather(location: any, units = "metric") {
+export async function getLiveWeather(location: string, units = "metric") {
   return request(
     `/weather/live?location=${encodeURIComponent(location)}&units=${units}`,
   );

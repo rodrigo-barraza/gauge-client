@@ -7,7 +7,12 @@ import { SENSOR_TYPE_LABELS, POLL_INTERVAL_DASHBOARD } from "@/constants";
 import styles from "./DashboardComponent.module.css";
 
 export default function DashboardComponent() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<{
+    totalSensors?: number;
+    alerts?: { active?: number; triggered24h?: number };
+    sensorsByType?: { _id: string; count: number }[];
+    latestReadings?: { _id: string; value: number | string; timestamp: string | number }[];
+  } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,7 +20,7 @@ export default function DashboardComponent() {
       try {
         const summary = await getDashboardSummary();
         setData(summary);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Dashboard fetch failed:", err);
       } finally {
         setLoading(false);
@@ -55,7 +60,7 @@ export default function DashboardComponent() {
       value: data?.alerts?.active || 0,
       icon: Bell,
       color:
-        data?.alerts?.active > 0
+        (data?.alerts?.active || 0) > 0
           ? "var(--color-warning)"
           : "var(--color-success)",
     },
@@ -64,7 +69,7 @@ export default function DashboardComponent() {
       value: data?.alerts?.triggered24h || 0,
       icon: Bell,
       color:
-        data?.alerts?.triggered24h > 0
+        (data?.alerts?.triggered24h || 0) > 0
           ? "var(--color-error)"
           : "var(--color-muted)",
     },
@@ -103,11 +108,11 @@ export default function DashboardComponent() {
       </div>
 
       {/* ── Sensor Type Breakdown ───────────────────────── */}
-      {data?.sensorsByType?.length > 0 && (
+      {data?.sensorsByType && data.sensorsByType.length > 0 && (
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Sensors by Type</h2>
           <div className={styles.typeGrid}>
-            {data.sensorsByType.map((item: any) => (
+            {data.sensorsByType.map((item: { _id: string; count: number }) => (
               <div key={item._id} className={styles.typeChip}>
                 <span className={styles.typeLabel}>
                   {SENSOR_TYPE_LABELS[item._id] || item._id}
@@ -120,11 +125,11 @@ export default function DashboardComponent() {
       )}
 
       {/* ── Latest Readings ─────────────────────────────── */}
-      {data?.latestReadings?.length > 0 && (
+      {data?.latestReadings && data.latestReadings.length > 0 && (
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Latest Readings</h2>
           <div className={styles.readingsGrid}>
-            {data.latestReadings.map((reading: any) => (
+            {data.latestReadings.map((reading: { _id: string; value: number | string; timestamp: string | number }) => (
               <div key={reading._id.toString()} className={styles.readingCard}>
                 <span className={styles.readingValue}>
                   {typeof reading.value === "number"

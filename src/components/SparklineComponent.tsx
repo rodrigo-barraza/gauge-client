@@ -7,16 +7,21 @@ export default function SparklineComponent({
   width = 120,
   height = 32,
   color = "var(--color-accent)",
-}: any) {
+}: {
+  data?: ({ value: number } | number)[];
+  width?: number;
+  height?: number;
+  color?: string;
+}) {
   if (!data.length) return null;
 
-  const values = data.map((d: any) => (typeof d === "object" ? d.value : d));
+  const values = data.map((d: { value: number } | number) => (typeof d === "object" ? d.value : d));
   const min = Math.min(...values);
   const max = Math.max(...values);
   const range = max - min || 1;
 
   const points = values
-    .map((v: any, i: any) => {
+    .map((v: number, i: number) => {
       const x = (i / (values.length - 1)) * width;
       const y = height - ((v - min) / range) * (height - 4) - 2;
       return `${x},${y}`;

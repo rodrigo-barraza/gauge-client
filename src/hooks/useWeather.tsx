@@ -7,11 +7,37 @@ import {
 } from "@/services/GaugeService";
 import { POLL_INTERVAL_WEATHER } from "@/constants";
 
-export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER }: any = {}) {
-  const [weather, setWeather] = useState<any>(null);
-  const [environment, setEnvironment] = useState<any>(null);
+export interface WeatherData {
+  temperature?: number;
+  temp?: number;
+  humidity?: number;
+  windSpeed?: number;
+  wind_speed?: number;
+  visibility?: number;
+  description?: string;
+  condition?: string;
+  summary?: string;
+  feelsLike?: number;
+  feels_like?: number;
+  pressure?: number;
+  uvIndex?: number;
+  uv?: number;
+  current?: WeatherData;
+  [key: string]: unknown;
+}
+
+export interface EnvironmentData {
+  airQuality?: { error?: string; [key: string]: unknown };
+  spaceWeather?: { error?: string; [key: string]: unknown };
+  pollen?: { error?: string; [key: string]: unknown };
+  [key: string]: unknown;
+}
+
+export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER }: { pollInterval?: number } = {}) {
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [environment, setEnvironment] = useState<EnvironmentData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
     try {
@@ -22,8 +48,8 @@ export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER }: any = {}) {
       setWeather(weatherData);
       setEnvironment(envData);
       setError(null);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "Fetch failed");
     } finally {
       setLoading(false);
     }
@@ -43,9 +69,9 @@ export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER }: any = {}) {
           setError(null);
           setLoading(false);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (!cancelled) {
-          setError(error.message);
+          setError(error instanceof Error ? error.message : "Fetch failed");
           setLoading(false);
         }
       }

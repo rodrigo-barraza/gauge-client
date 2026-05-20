@@ -115,3 +115,36 @@ export const NAV_ITEMS = [
 export const POLL_INTERVAL_READINGS = 30_000;
 export const POLL_INTERVAL_WEATHER = 60_000;
 export const POLL_INTERVAL_DASHBOARD = 15_000;
+
+export interface Sensor {
+  _id?: string;
+  name?: string;
+  status?: string;
+  lastReading?: number | string | null;
+  unit?: string;
+  type?: string;
+  location?: string;
+  lastReadingAt?: string | number | null;
+}
+
+export interface Alert {
+  _id?: string;
+  name?: string;
+  sensorId?: string;
+  condition?: string;
+  threshold?: number;
+  severity?: string;
+  triggerCount?: number;
+  active?: boolean;
+}
+
+export interface AlertEvent {
+  _id?: string;
+  alertId?: string;
+  alertName?: string;
+  severity?: string;
+  value?: number | string;
+  condition?: string;
+  threshold?: number;
+  triggeredAt?: string | number;
+}

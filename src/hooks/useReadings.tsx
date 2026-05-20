@@ -9,20 +9,20 @@ import {
 import { POLL_INTERVAL_READINGS } from "@/constants";
 
 export function useReadings(
-  sensorId: any,
-  { pollInterval = POLL_INTERVAL_READINGS, hours = 24 }: any = {},
+  sensorId: string,
+  { pollInterval = POLL_INTERVAL_READINGS, hours = 24 }: { pollInterval?: number; hours?: number } = {},
 ) {
-  const [readings, setReadings] = useState<any[]>([]);
+  const [readings, setReadings] = useState<Record<string, unknown>[]>([]);
   const [stats, setStats] = useState(null);
-  const [sparkline, setSparkline] = useState<any[]>([]);
+  const [sparkline, setSparkline] = useState<Record<string, unknown>[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
     if (!sensorId) return;
     try {
       const [readingsData, statsData, sparklineData] = await Promise.all([
-        getReadings(sensorId, { limit: 100, sort: "desc" }),
+        getReadings(sensorId, { limit: "100", sort: "desc" }),
         getReadingStats(sensorId, hours),
         getSparkline(sensorId, hours, 50),
       ]);
@@ -30,8 +30,8 @@ export function useReadings(
       setStats(statsData);
       setSparkline(sparklineData.data || []);
       setError(null);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "Fetch failed");
     } finally {
       setLoading(false);
     }
@@ -43,7 +43,7 @@ export function useReadings(
     async function doFetch() {
       try {
         const [readingsData, statsData, sparklineData] = await Promise.all([
-          getReadings(sensorId, { limit: 100, sort: "desc" }),
+          getReadings(sensorId, { limit: "100", sort: "desc" }),
           getReadingStats(sensorId, hours),
           getSparkline(sensorId, hours, 50),
         ]);
@@ -54,9 +54,9 @@ export function useReadings(
           setError(null);
           setLoading(false);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (!cancelled) {
-          setError(error.message);
+          setError(error instanceof Error ? error.message : "Fetch failed");
           setLoading(false);
         }
       }

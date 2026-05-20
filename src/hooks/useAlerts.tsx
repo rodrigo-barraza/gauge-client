@@ -8,27 +8,27 @@ import {
   deleteAlert,
   getAlertHistory,
 } from "@/services/GaugeService";
-import { POLL_INTERVAL_DASHBOARD } from "@/constants";
+import { POLL_INTERVAL_DASHBOARD, Alert, AlertEvent } from "@/constants";
 
 export function useAlerts({
   pollInterval = POLL_INTERVAL_DASHBOARD,
-}: any = {}) {
-  const [alerts, setAlerts] = useState<any[]>([]);
-  const [history, setHistory] = useState<any[]>([]);
+}: { pollInterval?: number } = {}) {
+  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [history, setHistory] = useState<AlertEvent[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
     try {
       const [alertsData, historyData] = await Promise.all([
         listAlerts(),
-        getAlertHistory({ limit: 50 }),
+        getAlertHistory({ limit: "50" }),
       ]);
       setAlerts(alertsData.alerts || []);
       setHistory(historyData.history || []);
       setError(null);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "Fetch failed");
     } finally {
       setLoading(false);
     }
@@ -40,7 +40,7 @@ export function useAlerts({
       try {
         const [alertsData, historyData] = await Promise.all([
           listAlerts(),
-          getAlertHistory({ limit: 50 }),
+          getAlertHistory({ limit: "50" }),
         ]);
         if (!cancelled) {
           setAlerts(alertsData.alerts || []);
@@ -48,9 +48,9 @@ export function useAlerts({
           setError(null);
           setLoading(false);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         if (!cancelled) {
-          setError(error.message);
+          setError(error instanceof Error ? error.message : "Fetch failed");
           setLoading(false);
         }
       }
@@ -63,21 +63,21 @@ export function useAlerts({
     };
   }, [pollInterval]);
 
-  const add = useCallback(async (data: any) => {
+  const add = useCallback(async (data: Record<string, unknown>) => {
     const alert = await createAlert(data);
-    setAlerts((prev: any) => [alert, ...prev]);
+    setAlerts((prev: Alert[]) => [alert as Alert, ...prev]);
     return alert;
   }, []);
 
-  const update = useCallback(async (id: any, data: any) => {
+  const update = useCallback(async (id: string, data: Record<string, unknown>) => {
     const alert = await updateAlert(id, data);
-    setAlerts((prev: any) => prev.map((a: any) => (a._id === id ? alert : a)));
+    setAlerts((prev: Alert[]) => prev.map((a: Alert) => (a._id === id ? (alert as Alert) : a)));
     return alert;
   }, []);
 
-  const remove = useCallback(async (id: any) => {
+  const remove = useCallback(async (id: string) => {
     await deleteAlert(id);
-    setAlerts((prev: any) => prev.filter((a: any) => a._id !== id));
+    setAlerts((prev: Alert[]) => prev.filter((a: Alert) => a._id !== id));
   }, []);
 
   return {
