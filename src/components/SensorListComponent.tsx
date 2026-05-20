@@ -25,7 +25,7 @@ export default function SensorListComponent() {
       (s.location || "").toLowerCase().includes(search.toLowerCase()),
   );
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
       await add({
@@ -39,8 +39,12 @@ export default function SensorListComponent() {
         description: "",
       });
       setShowForm(false);
-    } catch (err: any) {
-      console.error("Create sensor failed:", err);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Create sensor failed:", err.message);
+      } else {
+        console.error("Create sensor failed:", err);
+      }
     }
   }
 
@@ -77,7 +81,7 @@ export default function SensorListComponent() {
           >
             {SENSOR_TYPE_LIST.map((type) => (
               <option key={type} value={type}>
-                {(SENSOR_TYPE_LABELS as any)[type] || type}
+                {SENSOR_TYPE_LABELS[type] || type}
               </option>
             ))}
           </select>

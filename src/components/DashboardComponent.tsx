@@ -110,7 +110,7 @@ export default function DashboardComponent() {
             {data.sensorsByType.map((item: any) => (
               <div key={item._id} className={styles.typeChip}>
                 <span className={styles.typeLabel}>
-                  {(SENSOR_TYPE_LABELS as any)[item._id] || item._id}
+                  {SENSOR_TYPE_LABELS[item._id] || item._id}
                 </span>
                 <span className={styles.typeCount}>{item.count}</span>
               </div>

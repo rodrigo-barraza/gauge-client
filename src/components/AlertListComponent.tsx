@@ -24,7 +24,7 @@ export default function AlertListComponent() {
     message: "",
   });
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
       await add({
@@ -40,8 +40,12 @@ export default function AlertListComponent() {
         message: "",
       });
       setShowForm(false);
-    } catch (err: any) {
-      console.error("Create alert failed:", err);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Create alert failed:", err.message);
+      } else {
+        console.error("Create alert failed:", err);
+      }
     }
   }
 
@@ -81,7 +85,7 @@ export default function AlertListComponent() {
             <option value="">Select sensor...</option>
             {sensors.map((s) => (
               <option key={s._id} value={s._id}>
-                {s.name} ({(SENSOR_TYPE_LABELS as any)[s.type] || s.type})
+                {s.name} ({SENSOR_TYPE_LABELS[s.type] || s.type})
               </option>
             ))}
           </select>

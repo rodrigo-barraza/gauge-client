@@ -20,7 +20,7 @@ export const SENSOR_TYPES = {
 
 export const SENSOR_TYPE_LIST = Object.values(SENSOR_TYPES);
 
-export const UNIT_MAP = {
+export const UNIT_MAP: Record<string, string> = {
   [SENSOR_TYPES.TEMPERATURE]: "°C",
   [SENSOR_TYPES.HUMIDITY]: "%",
   [SENSOR_TYPES.PRESSURE]: "hPa",
@@ -56,7 +56,7 @@ export const ALERT_SEVERITY = {
   CRITICAL: "critical",
 };
 
-export const SENSOR_TYPE_LABELS = {
+export const SENSOR_TYPE_LABELS: Record<string, string> = {
   temperature: "Temperature",
   humidity: "Humidity",
   pressure: "Pressure",
@@ -72,7 +72,7 @@ export const SENSOR_TYPE_LABELS = {
   custom: "Custom",
 };
 
-export const SENSOR_TYPE_ICONS = {
+export const SENSOR_TYPE_ICONS: Record<string, string> = {
   temperature: "Thermometer",
   humidity: "Droplets",
   pressure: "Gauge",
