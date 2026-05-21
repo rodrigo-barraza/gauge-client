@@ -5,6 +5,7 @@ import {
   generateThemeInitScript,
 } from "@rodrigo-barraza/components-library";
 import "./globals.css";
+import SessionTrackerComponent from "@/components/SessionTrackerComponent";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -51,7 +52,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
         <ThemeProvider storageKey="gauge:theme" defaultTheme="dark">
-          <ComponentsProvider>{children}</ComponentsProvider>
+          <ComponentsProvider>
+            {children}
+            <SessionTrackerComponent />
+          </ComponentsProvider>
         </ThemeProvider>
       </body>
     </html>

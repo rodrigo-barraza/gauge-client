@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
   ],
 
   env: {
+
+    // ── Sessions ──────────────────────────────────────────────
+    SESSIONS_SERVICE_URL: secrets.SESSIONS_SERVICE_URL,
+    SESSIONS_SERVICE_PUBLIC_URL: secrets.SESSIONS_SERVICE_PUBLIC_URL,
     GAUGE_CLIENT_PORT: secrets.GAUGE_CLIENT_PORT,
     GAUGE_CLIENT_DOMAIN: secrets.GAUGE_CLIENT_DOMAIN,
     GAUGE_SERVICE_URL: secrets.GAUGE_SERVICE_URL,
