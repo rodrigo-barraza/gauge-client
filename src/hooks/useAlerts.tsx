@@ -71,13 +71,13 @@ export function useAlerts({
 
   const update = useCallback(async (id: string, data: Record<string, unknown>) => {
     const alert = await updateAlert(id, data);
-    setAlerts((prev: Alert[]) => prev.map((a: Alert) => (a._id === id ? (alert as Alert) : a)));
+    setAlerts((prev: Alert[]) => prev.map((alert: Alert) => (alert._id === id ? (alert as Alert) : alert)));
     return alert;
   }, []);
 
   const remove = useCallback(async (id: string) => {
     await deleteAlert(id);
-    setAlerts((prev: Alert[]) => prev.filter((a: Alert) => a._id !== id));
+    setAlerts((prev: Alert[]) => prev.filter((alert: Alert) => alert._id !== id));
   }, []);
 
   return {

@@ -18,7 +18,7 @@ export const AUTH_ENABLED = !!(
 
 const ALLOWED_EMAILS = (process.env.AUTH_ALLOWED_EMAILS || "")
   .split(",")
-  .map((e) => e.trim().toLowerCase())
+  .map((entry) => entry.trim().toLowerCase())
   .filter(Boolean);
 
 export const { handlers, auth, signIn, signOut } = NextAuth({

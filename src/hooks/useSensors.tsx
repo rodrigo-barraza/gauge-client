@@ -62,14 +62,14 @@ export function useSensors({
   const update = useCallback(async (id: string, data: Record<string, unknown>) => {
     const sensor = await updateSensor(id, data);
     setSensors((prev: Sensor[]) =>
-      prev.map((s: Sensor) => (s._id === id ? (sensor as Sensor) : s)),
+      prev.map((sensor: Sensor) => (sensor._id === id ? (sensor as Sensor) : sensor)),
     );
     return sensor;
   }, []);
 
   const remove = useCallback(async (id: string) => {
     await deleteSensor(id);
-    setSensors((prev: Sensor[]) => prev.filter((s: Sensor) => s._id !== id));
+    setSensors((prev: Sensor[]) => prev.filter((sensor: Sensor) => sensor._id !== id));
   }, []);
 
   return { sensors, loading, error, refetch: fetchData, add, update, remove };

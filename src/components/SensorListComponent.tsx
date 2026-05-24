@@ -25,8 +25,8 @@ export default function SensorListComponent() {
       (s.location || "").toLowerCase().includes(search.toLowerCase()),
   );
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
     try {
       await add({
         ...formData,
