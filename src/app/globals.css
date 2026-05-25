@@ -18,10 +18,10 @@
   --color-accent-strong: hsl(174, 72%, 38%);
 
   /* Map to shared accent tokens */
-  --accent-color: var(--color-accent);
-  --accent-hover: var(--color-accent-hover);
-  --accent-subtle: var(--color-accent-subtle);
-  --accent-glow: var(--color-accent-glow);
+  --accent-primary: var(--color-accent);
+  --accent-primary-hover: var(--color-accent-hover);
+  --accent-primary-subtle: var(--color-accent-subtle);
+  --accent-primary-glow: var(--color-accent-glow);
 
   /* Surfaces */
   --color-bg: hsl(220, 20%, 7%);
@@ -32,8 +32,8 @@
   --color-bg-overlay: hsla(220, 20%, 4%, 0.8);
 
   /* Map to shared surface tokens */
-  --bg-primary: var(--color-bg);
-  --bg-secondary: var(--color-bg-elevated);
+  --bg-base: var(--color-bg);
+  --bg-surface: var(--color-bg-elevated);
 
   /* Borders */
   --color-border: hsla(220, 14%, 30%, 0.35);
@@ -51,7 +51,7 @@
   --color-success-subtle: hsla(152, 68%, 48%, 0.12);
   --color-warning: hsl(38, 92%, 55%);
   --color-warning-subtle: hsla(38, 92%, 55%, 0.12);
-  --color-error: hsl(0, 72%, 55%);
+  --color-danger: hsl(0, 72%, 55%);
   --color-error-subtle: hsla(0, 72%, 55%, 0.12);
   --color-info: hsl(210, 72%, 55%);
   --color-info-subtle: hsla(210, 72%, 55%, 0.12);
@@ -162,8 +162,8 @@ a {
   }
 
   &.error {
-    background: var(--color-error);
-    box-shadow: 0 0 8px var(--color-error);
+    background: var(--color-danger);
+    box-shadow: 0 0 8px var(--color-danger);
     animation: pulse 1s ease-in-out infinite;
   }
 }
@@ -198,7 +198,7 @@ a {
 
   &.error {
     background: var(--color-error-subtle);
-    color: var(--color-error);
+    color: var(--color-danger);
   }
 
   &.info {
