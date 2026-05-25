@@ -19,9 +19,9 @@
 
   /* Map to shared accent tokens */
   --accent-primary: var(--color-accent);
-  --accent-primary-hover: var(--color-accent-hover);
-  --accent-primary-subtle: var(--color-accent-subtle);
-  --accent-primary-glow: var(--color-accent-glow);
+  --calculated-accent-primary-hover: var(--color-accent-hover);
+  --calculated-accent-primary-subtle: var(--color-accent-subtle);
+  --calculated-accent-primary-glow: var(--color-accent-glow);
 
   /* Surfaces */
   --color-bg: hsl(220, 20%, 7%);
@@ -48,20 +48,20 @@
 
   /* Semantic */
   --color-success: hsl(152, 68%, 48%);
-  --color-success-subtle: hsla(152, 68%, 48%, 0.12);
+  --calculated-color-success-subtle: hsla(152, 68%, 48%, 0.12);
   --color-warning: hsl(38, 92%, 55%);
-  --color-warning-subtle: hsla(38, 92%, 55%, 0.12);
+  --calculated-color-warning-subtle: hsla(38, 92%, 55%, 0.12);
   --color-danger: hsl(0, 72%, 55%);
   --color-error-subtle: hsla(0, 72%, 55%, 0.12);
   --color-info: hsl(210, 72%, 55%);
-  --color-info-subtle: hsla(210, 72%, 55%, 0.12);
+  --calculated-color-info-subtle: hsla(210, 72%, 55%, 0.12);
   --color-muted: hsl(220, 10%, 42%);
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px hsla(0, 0%, 0%, 0.3);
-  --shadow-md: 0 4px 12px hsla(0, 0%, 0%, 0.4);
-  --shadow-lg: 0 8px 32px hsla(0, 0%, 0%, 0.5);
-  --shadow-glow: 0 0 20px var(--color-accent-glow);
+  --calculated-shadow-sm: 0 1px 3px hsla(0, 0%, 0%, 0.3);
+  --calculated-shadow-md: 0 4px 12px hsla(0, 0%, 0%, 0.4);
+  --calculated-shadow-lg: 0 8px 32px hsla(0, 0%, 0%, 0.5);
+  --calculated-shadow-glow: 0 0 20px var(--color-accent-glow);
 }
 
 /* ── Base Overrides ────────────────────────────────────────── */
@@ -132,7 +132,7 @@ a {
 
   &:hover {
     border-color: var(--color-border-accent);
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--calculated-shadow-glow);
   }
 }
 
@@ -187,12 +187,12 @@ a {
   }
 
   &.success {
-    background: var(--color-success-subtle);
+    background: var(--calculated-color-success-subtle);
     color: var(--color-success);
   }
 
   &.warning {
-    background: var(--color-warning-subtle);
+    background: var(--calculated-color-warning-subtle);
     color: var(--color-warning);
   }
 
@@ -202,7 +202,7 @@ a {
   }
 
   &.info {
-    background: var(--color-info-subtle);
+    background: var(--calculated-color-info-subtle);
     color: var(--color-info);
   }
 }

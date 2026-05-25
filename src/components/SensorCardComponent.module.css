@@ -17,7 +17,7 @@
     border-color: var(--color-border-accent);
     background: var(--color-bg-card-hover);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--calculated-shadow-glow);
   }
 }
 

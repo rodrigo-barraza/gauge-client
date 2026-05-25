@@ -35,7 +35,7 @@
   &:hover {
     background: var(--color-accent-hover);
     transform: translateY(-1px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--calculated-shadow-glow);
   }
 }
 
