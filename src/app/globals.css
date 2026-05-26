@@ -24,16 +24,16 @@
   --calculated-accent-primary-glow: var(--color-accent-glow);
 
   /* Surfaces */
-  --color-bg: hsl(220, 20%, 7%);
-  --color-bg-elevated: hsl(220, 18%, 10%);
-  --color-bg-card: hsl(220, 16%, 12%);
-  --color-bg-card-hover: hsl(220, 16%, 14%);
-  --color-bg-input: hsl(220, 16%, 9%);
-  --color-bg-overlay: hsla(220, 20%, 4%, 0.8);
+  --color-background: hsl(220, 20%, 7%);
+  --color-background-elevated: hsl(220, 18%, 10%);
+  --color-background-card: hsl(220, 16%, 12%);
+  --color-background-card-hover: hsl(220, 16%, 14%);
+  --color-background-input: hsl(220, 16%, 9%);
+  --color-background-overlay: hsla(220, 20%, 4%, 0.8);
 
   /* Map to shared surface tokens */
-  --bg-base: var(--color-bg);
-  --bg-surface: var(--color-bg-elevated);
+  --background-base: var(--color-background);
+  --background-surface: var(--color-background-elevated);
 
   /* Borders */
   --color-border: hsla(220, 14%, 30%, 0.35);
@@ -67,7 +67,7 @@
 /* ── Base Overrides ────────────────────────────────────────── */
 
 body {
-  background: var(--color-bg);
+  background: var(--color-background);
   color: var(--color-text);
   line-height: 1.6;
 }
@@ -124,7 +124,7 @@ a {
 /* ── Glass Card Utility ────────────────────────────────────── */
 
 .glass-card {
-  background: var(--color-bg-card);
+  background: var(--color-background-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   backdrop-filter: blur(12px);

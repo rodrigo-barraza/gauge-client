@@ -37,7 +37,7 @@
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-lg);
-  background: var(--color-bg-card);
+  background: var(--color-background-card);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
   animation: fadeIn 400ms ease-out both;
@@ -96,7 +96,7 @@
 }
 .envCard {
   padding: var(--space-lg);
-  background: var(--color-bg-card);
+  background: var(--color-background-card);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
 
@@ -128,9 +128,9 @@
   height: 100px;
   background: linear-gradient(
     90deg,
-    var(--color-bg-card) 25%,
-    var(--color-bg-card-hover) 50%,
-    var(--color-bg-card) 75%
+    var(--color-background-card) 25%,
+    var(--color-background-card-hover) 50%,
+    var(--color-background-card) 75%
   );
   background-size: 200% 100%;
   border-radius: var(--radius-lg);
