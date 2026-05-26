@@ -19,8 +19,8 @@ async function request(path: string, options: RequestInit = {}) {
 // ─── Sensors ───────────────────────────────────────────────────
 
 export async function listSensors(params: Record<string, string> = {}) {
-  const qs = new URLSearchParams(params).toString();
-  return request(`/sensors${qs ? `?${qs}` : ""}`);
+  const queryString = new URLSearchParams(params).toString();
+  return request(`/sensors${queryString ? `?${queryString}` : ""}`);
 }
 
 export async function getSensor(id: string) {
@@ -56,8 +56,8 @@ export async function ingestBulkReadings(readings: Record<string, unknown>[]) {
 }
 
 export async function getReadings(sensorId: string, params: Record<string, string> = {}) {
-  const qs = new URLSearchParams(params).toString();
-  return request(`/readings/${sensorId}${qs ? `?${qs}` : ""}`);
+  const queryString = new URLSearchParams(params).toString();
+  return request(`/readings/${sensorId}${queryString ? `?${queryString}` : ""}`);
 }
 
 export async function getSparkline(sensorId: string, hours = 24, points = 50) {
@@ -73,8 +73,8 @@ export async function getReadingStats(sensorId: string, hours = 24) {
 // ─── Alerts ────────────────────────────────────────────────────
 
 export async function listAlerts(params: Record<string, string> = {}) {
-  const qs = new URLSearchParams(params).toString();
-  return request(`/alerts${qs ? `?${qs}` : ""}`);
+  const queryString = new URLSearchParams(params).toString();
+  return request(`/alerts${queryString ? `?${queryString}` : ""}`);
 }
 
 export async function getAlert(id: string) {
@@ -97,8 +97,8 @@ export async function deleteAlert(id: string) {
 }
 
 export async function getAlertHistory(params: Record<string, string> = {}) {
-  const qs = new URLSearchParams(params).toString();
-  return request(`/alerts/history${qs ? `?${qs}` : ""}`);
+  const queryString = new URLSearchParams(params).toString();
+  return request(`/alerts/history${queryString ? `?${queryString}` : ""}`);
 }
 
 // ─── Dashboard ─────────────────────────────────────────────────
