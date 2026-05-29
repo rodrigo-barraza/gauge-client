@@ -9,6 +9,14 @@ import {
   ALERT_SEVERITY,
   SENSOR_TYPE_LABELS,
 } from "@/constants";
+import {
+  ButtonComponent,
+  IconButtonComponent,
+  InputComponent,
+  SelectComponent,
+  BadgeComponent,
+  EmptyStateComponent,
+} from "@rodrigo-barraza/components-library";
 import styles from "./AlertListComponent.module.css";
 
 export default function AlertListComponent() {
@@ -49,6 +57,24 @@ export default function AlertListComponent() {
     }
   }
 
+  const sensorOptions = [
+    { value: "", label: "Select sensor..." },
+    ...sensors.map((sensor) => ({
+      value: sensor._id,
+      label: `${sensor.name} (${SENSOR_TYPE_LABELS[sensor.type || ""] || sensor.type})`,
+    })),
+  ];
+
+  const conditionOptions = Object.values(ALERT_CONDITIONS).map((condition) => ({
+    value: condition,
+    label: condition,
+  }));
+
+  const severityOptions = Object.values(ALERT_SEVERITY).map((severity) => ({
+    value: severity,
+    label: severity,
+  }));
+
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -56,87 +82,57 @@ export default function AlertListComponent() {
           <Bell size={24} />
           Alerts
         </h1>
-        <button
-          className={styles.addButton}
+        <ButtonComponent
+          variant="primary"
+          icon={Plus}
           onClick={() => setShowForm(!showForm)}
         >
-          <Plus size={16} />
           Add Alert
-        </button>
+        </ButtonComponent>
       </div>
 
       {showForm && (
         <form className={styles.form} onSubmit={handleSubmit}>
-          <input
-            className={styles.input}
+          <InputComponent
             placeholder="Alert name"
             value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, name: event.target.value })}
             required
           />
-          <select
-            className={styles.select}
+          <SelectComponent
             value={formData.sensorId}
-            onChange={(e) =>
-              setFormData({ ...formData, sensorId: e.target.value })
-            }
-            required
-          >
-            <option value="">Select sensor...</option>
-            {sensors.map((s) => (
-              <option key={s._id} value={s._id}>
-                {s.name} ({SENSOR_TYPE_LABELS[s.type || ""] || s.type})
-              </option>
-            ))}
-          </select>
-          <select
-            className={styles.select}
+            options={sensorOptions}
+            onChange={(value: string) => setFormData({ ...formData, sensorId: value })}
+            placeholder="Select sensor..."
+          />
+          <SelectComponent
             value={formData.condition}
-            onChange={(e) =>
-              setFormData({ ...formData, condition: e.target.value })
-            }
-          >
-            {Object.values(ALERT_CONDITIONS).map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-          <input
-            className={styles.input}
+            options={conditionOptions}
+            onChange={(value: string) => setFormData({ ...formData, condition: value })}
+          />
+          <InputComponent
             type="number"
             step="any"
             placeholder="Threshold"
             value={formData.threshold}
-            onChange={(e) =>
-              setFormData({ ...formData, threshold: e.target.value })
-            }
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, threshold: event.target.value })}
             required
           />
-          <select
-            className={styles.select}
+          <SelectComponent
             value={formData.severity}
-            onChange={(e) =>
-              setFormData({ ...formData, severity: e.target.value })
-            }
-          >
-            {Object.values(ALERT_SEVERITY).map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
+            options={severityOptions}
+            onChange={(value: string) => setFormData({ ...formData, severity: value })}
+          />
           <div className={styles.formActions}>
-            <button type="submit" className={styles.submitButton}>
+            <ButtonComponent variant="primary" type="submit">
               Create Alert
-            </button>
-            <button
-              type="button"
-              className={styles.cancelButton}
+            </ButtonComponent>
+            <ButtonComponent
+              variant="text"
               onClick={() => setShowForm(false)}
             >
               Cancel
-            </button>
+            </ButtonComponent>
           </div>
         </form>
       )}
@@ -157,9 +153,9 @@ export default function AlertListComponent() {
               <div key={alert._id} className={styles.alertRow}>
                 <div className={styles.alertInfo}>
                   <div className={styles.alertName}>
-                    <span className={`badge ${alert.severity}`}>
+                    <BadgeComponent variant={alert.severity}>
                       {alert.severity}
-                    </span>
+                    </BadgeComponent>
                     {alert.name}
                   </div>
                   <div className={styles.alertMeta}>
@@ -174,32 +170,27 @@ export default function AlertListComponent() {
                   </div>
                 </div>
                 <div className={styles.alertActions}>
-                  <span
-                    className={`badge ${alert.active ? "success" : "info"}`}
-                  >
+                  <BadgeComponent variant={alert.active ? "success" : "info"}>
                     {alert.active ? "Active" : "Disabled"}
-                  </span>
-                  <button
-                    className={styles.deleteButton}
+                  </BadgeComponent>
+                  <IconButtonComponent
+                    icon={Trash2}
+                    size="small"
+                    variant="text"
                     onClick={() => remove(alert._id!)}
                     title="Delete alert"
-                  >
-                    <Trash2 size={14} />
-                  </button>
+                  />
                 </div>
               </div>
             );
           })}
         </div>
       ) : (
-        <div className={styles.emptyState}>
-          <Bell size={48} style={{ opacity: 0.3 }} />
-          <h3>No Alert Rules</h3>
-          <p>
-            Create alert rules to get notified when sensor readings breach
-            thresholds.
-          </p>
-        </div>
+        <EmptyStateComponent
+          icon={Bell}
+          title="No Alert Rules"
+          description="Create alert rules to get notified when sensor readings breach thresholds."
+        />
       )}
 
       {history.length > 0 && (
@@ -208,9 +199,9 @@ export default function AlertListComponent() {
           <div className={styles.historyList}>
             {history.slice(0, 20).map((event) => (
               <div key={event._id} className={styles.historyRow}>
-                <span className={`badge ${event.severity}`}>
+                <BadgeComponent variant={event.severity}>
                   {event.severity}
-                </span>
+                </BadgeComponent>
                 <span className={styles.historyName}>{event.alertName}</span>
                 <span className={styles.historyValue}>
                   Value: {event.value} {event.condition} {event.threshold}

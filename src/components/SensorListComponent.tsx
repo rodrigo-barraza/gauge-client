@@ -1,10 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Cpu, Plus, Search } from "lucide-react";
+import { Cpu, Plus } from "lucide-react";
 import { useSensors } from "@/hooks/useSensors";
 import { SENSOR_TYPE_LIST, SENSOR_TYPE_LABELS, UNIT_MAP } from "@/constants";
 import SensorCardComponent from "./SensorCardComponent";
+import {
+  ButtonComponent,
+  InputComponent,
+  SelectComponent,
+  SearchInputComponent,
+  EmptyStateComponent,
+} from "@rodrigo-barraza/components-library";
 import styles from "./SensorListComponent.module.css";
 
 export default function SensorListComponent() {
@@ -24,6 +31,11 @@ export default function SensorListComponent() {
       (s.type || "").toLowerCase().includes(search.toLowerCase()) ||
       (s.location || "").toLowerCase().includes(search.toLowerCase()),
   );
+
+  const sensorTypeOptions = SENSOR_TYPE_LIST.map((type) => ({
+    value: type,
+    label: SENSOR_TYPE_LABELS[type] || type,
+  }));
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -55,79 +67,58 @@ export default function SensorListComponent() {
           <Cpu size={24} />
           Sensors
         </h1>
-        <button
-          className={styles.addButton}
+        <ButtonComponent
+          variant="primary"
+          icon={Plus}
           onClick={() => setShowForm(!showForm)}
         >
-          <Plus size={16} />
           Add Sensor
-        </button>
+        </ButtonComponent>
       </div>
 
-      {/* ── Add Sensor Form ────────────────────────────── */}
       {showForm && (
         <form className={styles.form} onSubmit={handleSubmit}>
-          <input
-            className={styles.input}
+          <InputComponent
             placeholder="Sensor name"
             value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, name: event.target.value })}
             required
           />
-          <select
-            className={styles.select}
+          <SelectComponent
             value={formData.type}
-            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-          >
-            {SENSOR_TYPE_LIST.map((type) => (
-              <option key={type} value={type}>
-                {SENSOR_TYPE_LABELS[type] || type}
-              </option>
-            ))}
-          </select>
-          <input
-            className={styles.input}
+            options={sensorTypeOptions}
+            onChange={(value: string) => setFormData({ ...formData, type: value })}
+          />
+          <InputComponent
             placeholder="Location (optional)"
             value={formData.location}
-            onChange={(e) =>
-              setFormData({ ...formData, location: e.target.value })
-            }
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, location: event.target.value })}
           />
-          <input
-            className={styles.input}
+          <InputComponent
             placeholder="Description (optional)"
             value={formData.description}
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
-            }
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, description: event.target.value })}
           />
           <div className={styles.formActions}>
-            <button type="submit" className={styles.submitButton}>
+            <ButtonComponent variant="primary" type="submit">
               Create Sensor
-            </button>
-            <button
-              type="button"
-              className={styles.cancelButton}
+            </ButtonComponent>
+            <ButtonComponent
+              variant="text"
               onClick={() => setShowForm(false)}
             >
               Cancel
-            </button>
+            </ButtonComponent>
           </div>
         </form>
       )}
 
-      {/* ── Search ─────────────────────────────────────── */}
-      <div className={styles.searchBar}>
-        <Search size={16} className={styles.searchIcon} />
-        <input
-          className={styles.searchInput}
-          placeholder="Search sensors..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
+      <SearchInputComponent
+        value={search}
+        onChange={setSearch}
+        placeholder="Search sensors..."
+      />
 
-      {/* ── Sensor Grid ────────────────────────────────── */}
       {loading ? (
         <div className={styles.loadingGrid}>
           {Array.from({ length: 6 }).map((_, i) => (
@@ -145,17 +136,15 @@ export default function SensorListComponent() {
           ))}
         </div>
       ) : (
-        <div className={styles.emptyState}>
-          <Cpu size={48} style={{ opacity: 0.3 }} />
-          <h3>
-            {search ? "No sensors match your search" : "No sensors registered"}
-          </h3>
-          <p>
-            {search
+        <EmptyStateComponent
+          icon={Cpu}
+          title={search ? "No sensors match your search" : "No sensors registered"}
+          description={
+            search
               ? "Try a different search term."
-              : 'Click "Add Sensor" to register your first device.'}
-          </p>
-        </div>
+              : 'Click "Add Sensor" to register your first device.'
+          }
+        />
       )}
     </div>
   );
