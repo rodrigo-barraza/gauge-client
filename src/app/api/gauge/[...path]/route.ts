@@ -8,6 +8,6 @@ import { createNextjsProxy } from "@rodrigo-barraza/utilities-library/nextjs";
 export const { GET, POST, PUT, DELETE, PATCH } = createNextjsProxy({
   port: 5607,
   serviceName: "gauge",
-  publicUrlEnv: "GAUGE_SERVICE_PUBLIC_URL",
-  internalUrlEnv: "GAUGE_SERVICE_URL",
+  publicUrlEnvironmentVariable: "GAUGE_SERVICE_PUBLIC_URL",
+  internalUrlEnvironmentVariable: "GAUGE_SERVICE_URL",
 });

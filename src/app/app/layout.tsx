@@ -14,13 +14,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }));
 
   return (
-    <div className={styles.appShell}>
+    <div className={styles['app-shell']}>
       <NavigationSidebarComponent
         items={navItems}
         title="Gauge"
         storageKey="gauge:sidebar"
       />
-      <main className={styles.mainContent}>{children}</main>
+      <main className={styles['main-content']}>{children}</main>
     </div>
   );
 }

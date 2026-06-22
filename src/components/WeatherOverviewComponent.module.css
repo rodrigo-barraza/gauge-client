@@ -1,7 +1,7 @@
 .page {
   animation: fadeIn var(--transition-base) ease-out;
 }
-.pageTitle {
+.page-title {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -10,7 +10,7 @@
   margin-bottom: var(--space-lg);
 }
 
-.conditionBanner {
+.condition-banner {
   padding: var(--space-md) var(--space-lg);
   background: var(--color-accent-subtle);
   border: 1px solid var(--color-border-accent);
@@ -18,21 +18,21 @@
   margin-bottom: var(--space-lg);
 }
 
-.conditionText {
+.condition-text {
   font-size: 1rem;
   font-weight: 500;
   color: var(--color-accent);
   text-transform: capitalize;
 }
 
-.weatherGrid {
+.weather-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--space-md);
   margin-bottom: var(--space-xl);
 }
 
-.weatherCard {
+.weather-card {
   display: flex;
   align-items: center;
   gap: var(--space-md);
@@ -50,29 +50,29 @@
   }
 }
 
-.cardIcon {
+.card-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
   border-radius: var(--radius-md);
-  background: hsla(0, 0%, 100%, 0.04);
+  background: oklch(1 0 0 / 0.04);
   flex-shrink: 0;
 }
 
-.cardInfo {
+.card-info {
   display: flex;
   flex-direction: column;
 }
-.cardValue {
+.card-value {
   font-family: var(--font-mono);
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.2;
   animation: countUp var(--transition-base) ease-out;
 }
-.cardLabel {
+.card-label {
   font-size: 0.78rem;
   color: var(--color-text-muted);
   font-weight: 500;
@@ -82,19 +82,19 @@
 .section {
   margin-bottom: var(--space-xl);
 }
-.sectionTitle {
+.section-title {
   font-size: 1.1rem;
   font-weight: 650;
   margin-bottom: var(--space-md);
   color: var(--color-text-secondary);
 }
 
-.envGrid {
+.env-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-md);
 }
-.envCard {
+.env-card {
   padding: var(--space-lg);
   background: var(--color-background-card);
   border: 1px solid var(--color-border-subtle);
@@ -108,7 +108,7 @@
   }
 }
 
-.envData {
+.env-data {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--color-text-muted);
@@ -119,7 +119,7 @@
 }
 
 /* ── States ────────────────────────────────────────────── */
-.loadingGrid {
+.loading-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--space-md);
@@ -136,7 +136,7 @@
   border-radius: var(--radius-lg);
   animation: shimmer 1.5s ease-in-out infinite;
 }
-.errorState {
+.error-state {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -57,37 +57,37 @@ export default function LandingPageComponent() {
     <div className={styles.landing}>
       {/* ── Hero ────────────────────────────────────────────── */}
       <section className={styles.hero}>
-        <div className={styles.heroGlow} />
-        <div className={styles.heroContent}>
-          <div className={styles.heroBadge}>
+        <div className={styles['hero-glow']} />
+        <div className={styles['hero-content']}>
+          <div className={styles['hero-badge']}>
             <Thermometer size={14} />
             Weather & Sensor Monitoring
           </div>
-          <h1 className={styles.heroTitle}>
-            <span className={styles.heroTitleAccent}>Gauge</span>
+          <h1 className={styles['hero-title']}>
+            <span className={styles['hero-title-accent']}>Gauge</span>
             <br />
             Your Environment,
             <br />
             Measured.
           </h1>
-          <p className={styles.heroDescription}>
+          <p className={styles['hero-description']}>
             Real-time sensor monitoring dashboard with weather integration,
             smart alerts, and time-series analytics. Track temperature,
             humidity, air quality, and more from one unified platform.
           </p>
-          <div className={styles.heroCta}>
-            <Link href="/app/dashboard" className={styles.ctaPrimary}>
+          <div className={styles['hero-cta']}>
+            <Link href="/app/dashboard" className={styles['cta-primary']}>
               Open Dashboard
             </Link>
-            <Link href="/app/sensors" className={styles.ctaSecondary}>
+            <Link href="/app/sensors" className={styles['cta-secondary']}>
               Manage Sensors
             </Link>
           </div>
         </div>
 
         {/* ── Animated Sensor Grid ──────────────────────────── */}
-        <div className={styles.heroVisual}>
-          <div className={styles.sensorGrid}>
+        <div className={styles['hero-visual']}>
+          <div className={styles['sensor-grid']}>
             {[
               {
                 label: "Temperature",
@@ -116,14 +116,14 @@ export default function LandingPageComponent() {
             ].map((sensor, i) => (
               <div
                 key={sensor.label}
-                className={styles.sensorPreview}
+                className={styles['sensor-preview']}
                 style={{ animationDelay: `${i * 150}ms` }}
               >
                 <sensor.icon size={18} style={{ color: sensor.color }} />
-                <span className={styles.sensorPreviewValue}>
+                <span className={styles['sensor-preview-value']}>
                   {sensor.value}
                 </span>
-                <span className={styles.sensorPreviewLabel}>
+                <span className={styles['sensor-preview-label']}>
                   {sensor.label}
                 </span>
               </div>
@@ -134,23 +134,23 @@ export default function LandingPageComponent() {
 
       {/* ── Features ────────────────────────────────────────── */}
       <section className={styles.features}>
-        <h2 className={styles.sectionTitle}>Everything You Need</h2>
-        <p className={styles.sectionSubtitle}>
+        <h2 className={styles['section-title']}>Everything You Need</h2>
+        <p className={styles['section-subtitle']}>
           Built for makers, developers, and anyone who wants to understand their
           environment better.
         </p>
-        <div className={styles.featureGrid}>
+        <div className={styles['feature-grid']}>
           {FEATURES.map((feature, i) => (
             <div
               key={feature.title}
-              className={styles.featureCard}
+              className={styles['feature-card']}
               style={{ animationDelay: `${i * 100}ms` }}
             >
-              <div className={styles.featureIcon}>
+              <div className={styles['feature-icon']}>
                 <feature.icon size={22} />
               </div>
-              <h3 className={styles.featureTitle}>{feature.title}</h3>
-              <p className={styles.featureDescription}>{feature.description}</p>
+              <h3 className={styles['feature-title']}>{feature.title}</h3>
+              <p className={styles['feature-description']}>{feature.description}</p>
             </div>
           ))}
         </div>

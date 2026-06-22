@@ -35,11 +35,11 @@ export default function DashboardComponent() {
   if (loading) {
     return (
       <div className={styles.dashboard}>
-        <h1 className={styles.pageTitle}>
+        <h1 className={styles['page-title']}>
           <LayoutDashboard size={24} />
           Dashboard
         </h1>
-        <div className={styles.loadingGrid}>
+        <div className={styles['loading-grid']}>
           {Array.from({ length: 4 }).map((_, i) => (
             <div key={i} className={styles.skeleton} />
           ))}
@@ -83,25 +83,25 @@ export default function DashboardComponent() {
 
   return (
     <div className={styles.dashboard}>
-      <h1 className={styles.pageTitle}>
+      <h1 className={styles['page-title']}>
         <LayoutDashboard size={24} />
         Dashboard
       </h1>
 
       {/* ── Stat Cards ──────────────────────────────────── */}
-      <div className={styles.statGrid}>
+      <div className={styles['stat-grid']}>
         {statCards.map((stat, i) => (
           <div
             key={stat.label}
-            className={styles.statCard}
+            className={styles['stat-card']}
             style={{ animationDelay: `${i * 80}ms` }}
           >
-            <div className={styles.statIcon} style={{ color: stat.color }}>
+            <div className={styles['stat-icon']} style={{ color: stat.color }}>
               <stat.icon size={20} />
             </div>
-            <div className={styles.statInfo}>
-              <span className={styles.statValue}>{stat.value}</span>
-              <span className={styles.statLabel}>{stat.label}</span>
+            <div className={styles['stat-info']}>
+              <span className={styles['stat-value']}>{stat.value}</span>
+              <span className={styles['stat-label']}>{stat.label}</span>
             </div>
           </div>
         ))}
@@ -110,14 +110,14 @@ export default function DashboardComponent() {
       {/* ── Sensor Type Breakdown ───────────────────────── */}
       {data?.sensorsByType && data.sensorsByType.length > 0 && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Sensors by Type</h2>
-          <div className={styles.typeGrid}>
+          <h2 className={styles['section-title']}>Sensors by Type</h2>
+          <div className={styles['type-grid']}>
             {data.sensorsByType.map((item: { _id: string; count: number }) => (
-              <div key={item._id} className={styles.typeChip}>
-                <span className={styles.typeLabel}>
+              <div key={item._id} className={styles['type-chip']}>
+                <span className={styles['type-label']}>
                   {SENSOR_TYPE_LABELS[item._id] || item._id}
                 </span>
-                <span className={styles.typeCount}>{item.count}</span>
+                <span className={styles['type-count']}>{item.count}</span>
               </div>
             ))}
           </div>
@@ -127,16 +127,16 @@ export default function DashboardComponent() {
       {/* ── Latest Readings ─────────────────────────────── */}
       {data?.latestReadings && data.latestReadings.length > 0 && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Latest Readings</h2>
-          <div className={styles.readingsGrid}>
+          <h2 className={styles['section-title']}>Latest Readings</h2>
+          <div className={styles['readings-grid']}>
             {data.latestReadings.map((reading: { _id: string; value: number | string; timestamp: string | number }) => (
-              <div key={reading._id.toString()} className={styles.readingCard}>
-                <span className={styles.readingValue}>
+              <div key={reading._id.toString()} className={styles['reading-card']}>
+                <span className={styles['reading-value']}>
                   {typeof reading.value === "number"
                     ? reading.value.toFixed(1)
                     : reading.value}
                 </span>
-                <span className={styles.readingTime}>
+                <span className={styles['reading-time']}>
                   {new Date(reading.timestamp).toLocaleTimeString()}
                 </span>
               </div>
@@ -147,8 +147,8 @@ export default function DashboardComponent() {
 
       {/* ── Empty State ─────────────────────────────────── */}
       {data?.totalSensors === 0 && (
-        <div className={styles.emptyState}>
-          <Cpu size={48} className={styles.emptyIcon} />
+        <div className={styles['empty-state']}>
+          <Cpu size={48} className={styles['empty-icon']} />
           <h3>No Sensors Registered</h3>
           <p>Add your first sensor to start monitoring environmental data.</p>
         </div>

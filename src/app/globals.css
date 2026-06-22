@@ -11,11 +11,11 @@
 
 :root {
   /* Accent — Teal / Cyan */
-  --color-accent: hsl(174, 72%, 46%);
-  --color-accent-hover: hsl(174, 72%, 52%);
-  --color-accent-subtle: hsla(174, 72%, 46%, 0.12);
-  --color-accent-glow: hsla(174, 72%, 46%, 0.25);
-  --color-accent-strong: hsl(174, 72%, 38%);
+  --color-accent: oklch(0.758 0.1349 182.1);
+  --color-accent-hover: oklch(0.812 0.1423 182.3);
+  --color-accent-subtle: oklch(0.758 0.1349 182.1 / 0.12);
+  --color-accent-glow: oklch(0.758 0.1349 182.1 / 0.25);
+  --color-accent-strong: oklch(0.658 0.1165 182.3);
 
   /* Map to shared accent tokens */
   --accent-primary: var(--color-accent);
@@ -24,43 +24,43 @@
   --calculated-accent-primary-glow: var(--color-accent-glow);
 
   /* Surfaces */
-  --color-background: hsl(220, 20%, 7%);
-  --color-background-elevated: hsl(220, 18%, 10%);
-  --color-background-card: hsl(220, 16%, 12%);
-  --color-background-card-hover: hsl(220, 16%, 14%);
-  --color-background-input: hsl(220, 16%, 9%);
-  --color-background-overlay: hsla(220, 20%, 4%, 0.8);
+  --color-background: oklch(0.176 0.0106 268.2);
+  --color-background-elevated: oklch(0.208 0.0147 276.5);
+  --color-background-card: oklch(0.23 0.0143 276.5);
+  --color-background-card-hover: oklch(0.25 0.0165 274.1);
+  --color-background-input: oklch(0.199 0.0125 273.1);
+  --color-background-overlay: oklch(0.143 0.006 258.4 / 0.8);
 
   /* Map to shared surface tokens */
   --background-base: var(--color-background);
   --background-surface: var(--color-background-elevated);
 
   /* Borders */
-  --color-border: hsla(220, 14%, 30%, 0.35);
-  --color-border-subtle: hsla(220, 14%, 25%, 0.2);
-  --color-border-accent: hsla(174, 72%, 46%, 0.3);
+  --color-border: oklch(0.403 0.029 276.5 / 0.35);
+  --color-border-subtle: oklch(0.358 0.0256 276.5 / 0.2);
+  --color-border-accent: oklch(0.758 0.1349 182.1 / 0.3);
 
   /* Text */
-  --color-text: hsl(220, 14%, 92%);
-  --color-text-secondary: hsl(220, 10%, 60%);
-  --color-text-muted: hsl(220, 10%, 42%);
-  --color-text-inverse: hsl(220, 20%, 7%);
+  --color-text: oklch(0.936 0.0051 270.3);
+  --color-text-secondary: oklch(0.67 0.0237 275);
+  --color-text-muted: oklch(0.514 0.0275 274);
+  --color-text-inverse: oklch(0.176 0.0106 268.2);
 
   /* Semantic */
-  --color-success: hsl(152, 68%, 48%);
-  --calculated-color-success-subtle: hsla(152, 68%, 48%, 0.12);
-  --color-warning: hsl(38, 92%, 55%);
-  --calculated-color-warning-subtle: hsla(38, 92%, 55%, 0.12);
-  --color-danger: hsl(0, 72%, 55%);
-  --color-error-subtle: hsla(0, 72%, 55%, 0.12);
-  --color-info: hsl(210, 72%, 55%);
-  --calculated-color-info-subtle: hsla(210, 72%, 55%, 0.12);
-  --color-muted: hsl(220, 10%, 42%);
+  --color-success: oklch(0.759 0.2026 154.5);
+  --calculated-color-success-subtle: oklch(0.759 0.2026 154.5 / 0.12);
+  --color-warning: oklch(0.794 0.1753 83.8);
+  --calculated-color-warning-subtle: oklch(0.794 0.1753 83.8 / 0.12);
+  --color-danger: oklch(0.599 0.2019 25.7);
+  --color-error-subtle: oklch(0.599 0.2019 25.7 / 0.12);
+  --color-info: oklch(0.62 0.161 266.5);
+  --calculated-color-info-subtle: oklch(0.62 0.161 266.5 / 0.12);
+  --color-muted: oklch(0.514 0.0275 274);
 
   /* Shadows */
-  --calculated-shadow-sm: 0 1px 3px hsla(0, 0%, 0%, 0.3);
-  --calculated-shadow-md: 0 4px 12px hsla(0, 0%, 0%, 0.4);
-  --calculated-shadow-lg: 0 8px 32px hsla(0, 0%, 0%, 0.5);
+  --calculated-shadow-sm: 0 1px 3px oklch(0 0 0 / 0.3);
+  --calculated-shadow-md: 0 4px 12px oklch(0 0 0 / 0.4);
+  --calculated-shadow-lg: 0 8px 32px oklch(0 0 0 / 0.5);
   --calculated-shadow-glow: 0 0 20px var(--color-accent-glow);
 }
 
@@ -90,10 +90,10 @@ a {
 /* ── Scrollbar Override ───────────────────────────────────── */
 
 ::-webkit-scrollbar-thumb {
-  background: hsla(220, 14%, 30%, 0.4);
+  background: oklch(0.403 0.029 276.5 / 0.4);
 
   &:hover {
-    background: hsla(220, 14%, 40%, 0.5);
+    background: oklch(0.49 0.0374 277.5 / 0.5);
   }
 }
 

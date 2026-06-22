@@ -18,11 +18,11 @@ export default function WeatherOverviewComponent() {
   if (loading) {
     return (
       <div className={styles.page}>
-        <h1 className={styles.pageTitle}>
+        <h1 className={styles['page-title']}>
           <CloudSun size={24} />
           Weather
         </h1>
-        <div className={styles.loadingGrid}>
+        <div className={styles['loading-grid']}>
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className={styles.skeleton} />
           ))}
@@ -34,11 +34,11 @@ export default function WeatherOverviewComponent() {
   if (error) {
     return (
       <div className={styles.page}>
-        <h1 className={styles.pageTitle}>
+        <h1 className={styles['page-title']}>
           <CloudSun size={24} />
           Weather
         </h1>
-        <div className={styles.errorState}>
+        <div className={styles['error-state']}>
           <CloudSun size={48} style={{ opacity: 0.3 }} />
           <h3>Weather Data Unavailable</h3>
           <p>{error}</p>
@@ -117,31 +117,31 @@ export default function WeatherOverviewComponent() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.pageTitle}>
+      <h1 className={styles['page-title']}>
         <CloudSun size={24} />
         Weather
       </h1>
 
       {/* ── Current Conditions ──────────────────────────── */}
       {description && (
-        <div className={styles.conditionBanner}>
-          <span className={styles.conditionText}>{description}</span>
+        <div className={styles['condition-banner']}>
+          <span className={styles['condition-text']}>{description}</span>
         </div>
       )}
 
-      <div className={styles.weatherGrid}>
+      <div className={styles['weather-grid']}>
         {weatherCards.map((card, i) => (
           <div
             key={card.label}
-            className={styles.weatherCard}
+            className={styles['weather-card']}
             style={{ animationDelay: `${i * 80}ms` }}
           >
-            <div className={styles.cardIcon} style={{ color: card.color }}>
+            <div className={styles['card-icon']} style={{ color: card.color }}>
               <card.icon size={20} />
             </div>
-            <div className={styles.cardInfo}>
-              <span className={styles.cardValue}>{card.value}</span>
-              <span className={styles.cardLabel}>{card.label}</span>
+            <div className={styles['card-info']}>
+              <span className={styles['card-value']}>{card.value}</span>
+              <span className={styles['card-label']}>{card.label}</span>
             </div>
           </div>
         ))}
@@ -150,12 +150,12 @@ export default function WeatherOverviewComponent() {
       {/* ── Environment Data ────────────────────────────── */}
       {environment && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Environment</h2>
-          <div className={styles.envGrid}>
+          <h2 className={styles['section-title']}>Environment</h2>
+          <div className={styles['env-grid']}>
             {environment.airQuality && !environment.airQuality.error && (
-              <div className={styles.envCard}>
+              <div className={styles['env-card']}>
                 <h3>Air Quality</h3>
-                <pre className={styles.envData}>
+                <pre className={styles['env-data']}>
                   {JSON.stringify(environment.airQuality, null, 2).slice(
                     0,
                     300,
@@ -164,9 +164,9 @@ export default function WeatherOverviewComponent() {
               </div>
             )}
             {environment.spaceWeather && !environment.spaceWeather.error && (
-              <div className={styles.envCard}>
+              <div className={styles['env-card']}>
                 <h3>Space Weather</h3>
-                <pre className={styles.envData}>
+                <pre className={styles['env-data']}>
                   {JSON.stringify(environment.spaceWeather, null, 2).slice(
                     0,
                     300,
@@ -175,9 +175,9 @@ export default function WeatherOverviewComponent() {
               </div>
             )}
             {environment.pollen && !environment.pollen.error && (
-              <div className={styles.envCard}>
+              <div className={styles['env-card']}>
                 <h3>Pollen</h3>
-                <pre className={styles.envData}>
+                <pre className={styles['env-data']}>
                   {JSON.stringify(environment.pollen, null, 2).slice(0, 300)}
                 </pre>
               </div>

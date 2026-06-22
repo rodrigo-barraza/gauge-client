@@ -63,7 +63,7 @@ export default function SensorListComponent() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1 className={styles.pageTitle}>
+        <h1 className={styles['page-title']}>
           <Cpu size={24} />
           Sensors
         </h1>
@@ -99,7 +99,7 @@ export default function SensorListComponent() {
             value={formData.description}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, description: event.target.value })}
           />
-          <div className={styles.formActions}>
+          <div className={styles['form-actions']}>
             <ButtonComponent variant="primary" type="submit">
               Create Sensor
             </ButtonComponent>
@@ -120,13 +120,13 @@ export default function SensorListComponent() {
       />
 
       {loading ? (
-        <div className={styles.loadingGrid}>
+        <div className={styles['loading-grid']}>
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className={styles.skeleton} />
           ))}
         </div>
       ) : filteredSensors.length > 0 ? (
-        <div className={styles.sensorGrid}>
+        <div className={styles['sensor-grid']}>
           {filteredSensors.map((sensor) => (
             <SensorCardComponent
               key={sensor._id}

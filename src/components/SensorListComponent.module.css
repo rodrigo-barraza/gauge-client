@@ -9,7 +9,7 @@
   margin-bottom: var(--space-lg);
 }
 
-.pageTitle {
+.page-title {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -17,7 +17,7 @@
   font-weight: 700;
 }
 
-.addButton {
+.add-button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -74,13 +74,13 @@
   cursor: pointer;
 }
 
-.formActions {
+.form-actions {
   display: flex;
   gap: var(--space-sm);
   grid-column: 1 / -1;
 }
 
-.submitButton {
+.submit-button {
   padding: 10px 20px;
   background: var(--color-accent);
   color: var(--color-text-inverse);
@@ -96,7 +96,7 @@
   }
 }
 
-.cancelButton {
+.cancel-button {
   padding: 10px 20px;
   background: transparent;
   color: var(--color-text-secondary);
@@ -115,12 +115,12 @@
 
 /* ── Search ────────────────────────────────────────────── */
 
-.searchBar {
+.search-bar {
   position: relative;
   margin-bottom: var(--space-lg);
 }
 
-.searchIcon {
+.search-icon {
   position: absolute;
   top: 50%;
   left: 14px;
@@ -129,7 +129,7 @@
   pointer-events: none;
 }
 
-.searchInput {
+.search-input {
   width: 100%;
   padding: 10px 14px 10px 40px;
   background: var(--color-background-card);
@@ -148,7 +148,7 @@
 
 /* ── Sensor Grid ───────────────────────────────────────── */
 
-.sensorGrid {
+.sensor-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-md);
@@ -156,7 +156,7 @@
 
 /* ── Loading ───────────────────────────────────────────── */
 
-.loadingGrid {
+.loading-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-md);
@@ -177,7 +177,7 @@
 
 /* ── Empty State ───────────────────────────────────────── */
 
-.emptyState {
+.empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;

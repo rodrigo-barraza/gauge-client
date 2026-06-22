@@ -7,14 +7,14 @@
   justify-content: space-between;
   margin-bottom: var(--space-lg);
 }
-.pageTitle {
+.page-title {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   font-size: 1.5rem;
   font-weight: 700;
 }
-.addButton {
+.add-button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -60,12 +60,12 @@
     border-color: var(--color-accent);
   }
 }
-.formActions {
+.form-actions {
   display: flex;
   gap: var(--space-sm);
   grid-column: 1 / -1;
 }
-.submitButton {
+.submit-button {
   padding: 10px 20px;
   background: var(--color-accent);
   color: var(--color-text-inverse);
@@ -75,7 +75,7 @@
   cursor: pointer;
   font-family: inherit;
 }
-.cancelButton {
+.cancel-button {
   padding: 10px 20px;
   background: transparent;
   color: var(--color-text-secondary);
@@ -84,12 +84,12 @@
   cursor: pointer;
   font-family: inherit;
 }
-.alertList {
+.alert-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
 }
-.alertRow {
+.alert-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,38 +104,38 @@
     border-color: var(--color-border-accent);
   }
 }
-.alertInfo {
+.alert-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.alertName {
+.alert-name {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   font-weight: 600;
   font-size: 0.95rem;
 }
-.alertMeta {
+.alert-meta {
   font-size: 0.78rem;
   color: var(--color-text-muted);
   display: flex;
   align-items: center;
   gap: var(--space-sm);
 }
-.triggerCount {
+.trigger-count {
   display: inline-flex;
   align-items: center;
   gap: 3px;
   color: var(--color-warning);
   font-weight: 600;
 }
-.alertActions {
+.alert-actions {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
 }
-.deleteButton {
+.delete-button {
   display: flex;
   align-items: center;
   padding: 6px;
@@ -153,18 +153,18 @@
 .section {
   margin-top: var(--space-xl);
 }
-.sectionTitle {
+.section-title {
   font-size: 1.1rem;
   font-weight: 650;
   margin-bottom: var(--space-md);
   color: var(--color-text-secondary);
 }
-.historyList {
+.history-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.historyRow {
+.history-row {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -173,21 +173,21 @@
   border-radius: var(--radius-sm);
   font-size: 0.82rem;
 }
-.historyName {
+.history-name {
   font-weight: 500;
 }
-.historyValue {
+.history-value {
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: 0.75rem;
 }
-.historyTime {
+.history-time {
   margin-left: auto;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: 0.72rem;
 }
-.loadingList {
+.loading-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -204,7 +204,7 @@
   border-radius: var(--radius-md);
   animation: shimmer 1.5s ease-in-out infinite;
 }
-.emptyState {
+.empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;

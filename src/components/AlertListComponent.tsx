@@ -78,7 +78,7 @@ export default function AlertListComponent() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1 className={styles.pageTitle}>
+        <h1 className={styles['page-title']}>
           <Bell size={24} />
           Alerts
         </h1>
@@ -123,7 +123,7 @@ export default function AlertListComponent() {
             options={severityOptions}
             onChange={(value: string) => setFormData({ ...formData, severity: value })}
           />
-          <div className={styles.formActions}>
+          <div className={styles['form-actions']}>
             <ButtonComponent variant="primary" type="submit">
               Create Alert
             </ButtonComponent>
@@ -138,38 +138,38 @@ export default function AlertListComponent() {
       )}
 
       {loading ? (
-        <div className={styles.loadingList}>
+        <div className={styles['loading-list']}>
           {Array.from({ length: 3 }).map((_, i) => (
             <div key={i} className={styles.skeleton} />
           ))}
         </div>
       ) : alerts.length > 0 ? (
-        <div className={styles.alertList}>
+        <div className={styles['alert-list']}>
           {alerts.map((alert) => {
             const sensor = sensors.find(
               (s) => s._id === alert.sensorId?.toString(),
             );
             return (
-              <div key={alert._id} className={styles.alertRow}>
-                <div className={styles.alertInfo}>
-                  <div className={styles.alertName}>
+              <div key={alert._id} className={styles['alert-row']}>
+                <div className={styles['alert-info']}>
+                  <div className={styles['alert-name']}>
                     <BadgeComponent variant={alert.severity}>
                       {alert.severity}
                     </BadgeComponent>
                     {alert.name}
                   </div>
-                  <div className={styles.alertMeta}>
+                  <div className={styles['alert-meta']}>
                     {sensor?.name || "Unknown sensor"} · {alert.condition}{" "}
                     {alert.threshold}
                     {(alert.triggerCount || 0) > 0 && (
-                      <span className={styles.triggerCount}>
+                      <span className={styles['trigger-count']}>
                         <AlertTriangle size={12} />
                         {alert.triggerCount}× triggered
                       </span>
                     )}
                   </div>
                 </div>
-                <div className={styles.alertActions}>
+                <div className={styles['alert-actions']}>
                   <BadgeComponent variant={alert.active ? "success" : "info"}>
                     {alert.active ? "Active" : "Disabled"}
                   </BadgeComponent>
@@ -195,18 +195,18 @@ export default function AlertListComponent() {
 
       {history.length > 0 && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Recent Triggers</h2>
-          <div className={styles.historyList}>
+          <h2 className={styles['section-title']}>Recent Triggers</h2>
+          <div className={styles['history-list']}>
             {history.slice(0, 20).map((event) => (
-              <div key={event._id} className={styles.historyRow}>
+              <div key={event._id} className={styles['history-row']}>
                 <BadgeComponent variant={event.severity}>
                   {event.severity}
                 </BadgeComponent>
-                <span className={styles.historyName}>{event.alertName}</span>
-                <span className={styles.historyValue}>
+                <span className={styles['history-name']}>{event.alertName}</span>
+                <span className={styles['history-value']}>
                   Value: {event.value} {event.condition} {event.threshold}
                 </span>
-                <span className={styles.historyTime}>
+                <span className={styles['history-time']}>
                   {new Date(event.triggeredAt || 0).toLocaleString()}
                 </span>
               </div>

@@ -1,9 +1,9 @@
-.appShell {
+.app-shell {
   display: flex;
   min-height: 100dvh;
 }
 
-.mainContent {
+.main-content {
   flex: 1;
   min-width: 0;
   padding: var(--space-xl);
@@ -12,7 +12,7 @@
 }
 
 @media (max-width: 768px) {
-  .mainContent {
+  .main-content {
     padding: var(--space-md);
   }
 }
