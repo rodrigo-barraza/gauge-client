@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
-        <ThemeProvider storageKey="gauge:theme" defaultTheme="dark">
+        <ThemeProvider storageKey="gauge:theme" defaultTheme="twilight">
           <ComponentsProvider>
             {children}
             <SessionTrackerComponent />
