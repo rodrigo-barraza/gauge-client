@@ -9,6 +9,7 @@ import {
   getAlertHistory,
 } from "@/services/GaugeService";
 import { POLL_INTERVAL_DASHBOARD, Alert, AlertEvent } from "@/constants";
+import { getErrorMessage } from "@rodrigo-barraza/utilities-library";
 
 export function useAlerts({
   pollInterval = POLL_INTERVAL_DASHBOARD,
@@ -28,7 +29,7 @@ export function useAlerts({
       setHistory(historyData.history || []);
       setError(null);
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "Fetch failed");
+      setError(getErrorMessage(error, "Fetch failed"));
     } finally {
       setLoading(false);
     }
@@ -50,7 +51,7 @@ export function useAlerts({
         }
       } catch (error: unknown) {
         if (!cancelled) {
-          setError(error instanceof Error ? error.message : "Fetch failed");
+          setError(getErrorMessage(error, "Fetch failed"));
           setLoading(false);
         }
       }

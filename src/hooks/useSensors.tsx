@@ -8,6 +8,7 @@ import {
   deleteSensor,
 } from "@/services/GaugeService";
 import { POLL_INTERVAL_DASHBOARD, Sensor } from "@/constants";
+import { getErrorMessage } from "@rodrigo-barraza/utilities-library";
 
 export function useSensors({
   pollInterval = POLL_INTERVAL_DASHBOARD,
@@ -22,7 +23,7 @@ export function useSensors({
       setSensors(data.sensors || []);
       setError(null);
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "Fetch failed");
+      setError(getErrorMessage(error, "Fetch failed"));
     } finally {
       setLoading(false);
     }
@@ -40,7 +41,7 @@ export function useSensors({
         }
       } catch (error: unknown) {
         if (!cancelled) {
-          setError(error instanceof Error ? error.message : "Fetch failed");
+          setError(getErrorMessage(error, "Fetch failed"));
           setLoading(false);
         }
       }

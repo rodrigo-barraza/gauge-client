@@ -13,7 +13,7 @@ importers:
         version: https://codeload.github.com/rodrigo-barraza/components-library/tar.gz/dbfc1e5a98525c3333626c13b641c928e4efff11(lucide-react@1.21.0(react@19.2.6))(luxon@3.7.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@rodrigo-barraza/utilities-library':
         specifier: github:rodrigo-barraza/utilities-library
-        version: https://codeload.github.com/rodrigo-barraza/utilities-library/tar.gz/16951ef6d0c01979265c18c3e94070d304851a3a
+        version: https://codeload.github.com/rodrigo-barraza/utilities-library/tar.gz/e16f415e82ca21aef685a91bff3b7caf274814cb
       lucide-react:
         specifier: ^1.14.0
         version: 1.21.0(react@19.2.6)
@@ -606,9 +606,9 @@ packages:
   '@rodrigo-barraza/utilities-library@file:../utilities-library':
     resolution: {directory: ../utilities-library, type: directory}
 
-  '@rodrigo-barraza/utilities-library@https://codeload.github.com/rodrigo-barraza/utilities-library/tar.gz/16951ef6d0c01979265c18c3e94070d304851a3a':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/rodrigo-barraza/utilities-library/tar.gz/16951ef6d0c01979265c18c3e94070d304851a3a}
-    version: 0.2.0
+  '@rodrigo-barraza/utilities-library@https://codeload.github.com/rodrigo-barraza/utilities-library/tar.gz/e16f415e82ca21aef685a91bff3b7caf274814cb':
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/rodrigo-barraza/utilities-library/tar.gz/e16f415e82ca21aef685a91bff3b7caf274814cb}
+    version: 0.2.1
 
   '@rolldown/binding-android-arm64@1.0.3':
     resolution: {integrity: sha512-454rs7jHngixp/NMxd5srYD57OnzSlZ/eFTETjORQHLwJG1lRtmNOJcBerZlfu4GjKqeq8aCCIQrMdHyhI51Hw==}
@@ -2119,6 +2119,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanoid@5.1.16:
+    resolution: {integrity: sha512-kVrnsrJqMR8+oLJnGEmSWw9BivK5mt7H3FZatVRjrc5wGqFYuBxX1yG7+A7Gi5AefkX6t/oCkizcQgpu0cY1dQ==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+
   napi-postinstall@0.3.4:
     resolution: {integrity: sha512-PHI5f1O0EP5xJ9gQmFGMS6IZcrVvTjpXjz7Na41gTE7eE2hK11lg04CECCYEEjdc17EV4DO+fkGEtt7TpTaTiQ==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
@@ -3285,6 +3290,7 @@ snapshots:
   '@rodrigo-barraza/utilities-library@file:../utilities-library':
     dependencies:
       mongodb: 7.3.0
+      nanoid: 5.1.16
       zod: 4.4.3
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
@@ -3295,9 +3301,10 @@ snapshots:
       - snappy
       - socks
 
-  '@rodrigo-barraza/utilities-library@https://codeload.github.com/rodrigo-barraza/utilities-library/tar.gz/16951ef6d0c01979265c18c3e94070d304851a3a':
+  '@rodrigo-barraza/utilities-library@https://codeload.github.com/rodrigo-barraza/utilities-library/tar.gz/e16f415e82ca21aef685a91bff3b7caf274814cb':
     dependencies:
       mongodb: 7.3.0
+      nanoid: 5.1.16
       zod: 4.4.3
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
@@ -4881,6 +4888,8 @@ snapshots:
   ms@2.1.3: {}
 
   nanoid@3.3.14: {}
+
+  nanoid@5.1.16: {}
 
   napi-postinstall@0.3.4: {}
 

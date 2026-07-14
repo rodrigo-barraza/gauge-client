@@ -6,6 +6,7 @@ import {
   getCurrentWeather,
 } from "@/services/GaugeService";
 import { POLL_INTERVAL_WEATHER } from "@/constants";
+import { getErrorMessage } from "@rodrigo-barraza/utilities-library";
 
 export interface WeatherData {
   temperature?: number;
@@ -49,7 +50,7 @@ export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER }: { pollInter
       setEnvironment(envData);
       setError(null);
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "Fetch failed");
+      setError(getErrorMessage(error, "Fetch failed"));
     } finally {
       setLoading(false);
     }
@@ -71,7 +72,7 @@ export function useWeather({ pollInterval = POLL_INTERVAL_WEATHER }: { pollInter
         }
       } catch (error: unknown) {
         if (!cancelled) {
-          setError(error instanceof Error ? error.message : "Fetch failed");
+          setError(getErrorMessage(error, "Fetch failed"));
           setLoading(false);
         }
       }

@@ -7,6 +7,7 @@ import {
   getReadingStats,
 } from "@/services/GaugeService";
 import { POLL_INTERVAL_READINGS } from "@/constants";
+import { getErrorMessage } from "@rodrigo-barraza/utilities-library";
 
 export function useReadings(
   sensorId: string,
@@ -31,7 +32,7 @@ export function useReadings(
       setSparkline(sparklineData.data || []);
       setError(null);
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "Fetch failed");
+      setError(getErrorMessage(error, "Fetch failed"));
     } finally {
       setLoading(false);
     }
@@ -56,7 +57,7 @@ export function useReadings(
         }
       } catch (error: unknown) {
         if (!cancelled) {
-          setError(error instanceof Error ? error.message : "Fetch failed");
+          setError(getErrorMessage(error, "Fetch failed"));
           setLoading(false);
         }
       }
