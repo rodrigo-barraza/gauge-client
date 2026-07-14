@@ -11,9 +11,9 @@
 //
 // Browser requests must NEVER hit localhost or LAN IPs when loaded
 // from a public domain — that triggers Chrome's Private Network
-// Access (PNA) prompt.
+// Access (PNA) prompt. URL resolution is delegated to
+// resolveClientServiceUrl from utilities-library:
 //
-// Strategy:
 //   Production (*.rod.dev):
 //     • GAUGE_SERVICE_URL → GAUGE_SERVICE_PUBLIC_URL from vault
 //
@@ -24,10 +24,12 @@
 //     • All URLs use full values from vault (LAN IPs for Docker)
 // ============================================================
 
-const IS_BROWSER = typeof window !== "undefined";
+import {
+  isProductionHostname,
+  resolveClientServiceUrl,
+} from "@rodrigo-barraza/utilities-library";
 
-export const IS_PRODUCTION =
-  IS_BROWSER && window.location.hostname.endsWith(".dev");
+export const IS_PRODUCTION = isProductionHostname();
 export const IS_LOCALHOST = !IS_PRODUCTION;
 
 export const PROJECT_NAME = IS_PRODUCTION ? "gauge-client" : "gauge-client-dev";
@@ -45,13 +47,10 @@ const PUBLIC_SERVICE_URL =
   process.env.GAUGE_SERVICE_PUBLIC_URL;
 
 // ── Gauge Service URL ──────────────────────────────────────────
-function resolveServiceUrl() {
-  if (!IS_BROWSER) return RAW_SERVICE_URL;
-  if (IS_PRODUCTION && PUBLIC_SERVICE_URL) return PUBLIC_SERVICE_URL;
-  return RAW_SERVICE_URL;
-}
-
-export const GAUGE_SERVICE_URL = resolveServiceUrl();
+export const GAUGE_SERVICE_URL = resolveClientServiceUrl({
+  internalUrl: RAW_SERVICE_URL,
+  publicUrl: PUBLIC_SERVICE_URL,
+});
 
 // ── Tools Service URL ──────────────────────────────────────────
 // Server-side only — vault value (no browser exposure needed).
