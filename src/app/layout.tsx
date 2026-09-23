@@ -43,11 +43,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <template
+        {/* A plain <script> runs before first paint; one inside a <template>
+            is inert and never runs, so non-default themes flashed. */}
+        <script
           dangerouslySetInnerHTML={{
-            __html: `<script>${generateThemeInitScript("gauge:theme")}</script>`,
+            __html: `${generateThemeInitScript("gauge:theme")}`,
           }}
-          suppressHydrationWarning
         />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
